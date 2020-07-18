@@ -55,6 +55,10 @@
     border-bottom: 4px solid transparent;
 }
 
+.CardAdd-btn-selected {
+    color: green;
+}
+
 .cards-list {
     color: #333;
     margin: 20px;

@@ -40,7 +40,10 @@ class App extends Component {
             <div className="App">
                 <Nav />
                 <AddCard types={this.state.types} />
-                <TempAddCardUnfolded types={this.state.types} />
+                <TempAddCardUnfolded
+                    types={this.state.types}
+                    apiURLCreateCard={apiURL}
+                />
                 <CardsList
                     cards={this.state.cards}
                     types={this.state.types}
