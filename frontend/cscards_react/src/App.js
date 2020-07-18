@@ -1,37 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import logo from './logo.svg';
-import './App.css';
+
 import InputDemo from './InputDemo';
+import Nav from './Nav';
+import CardsList from './CardsList';
+import AddCard, { TempAddCardUnfolded } from './AddCard';
+
+import './App.css';
 
 var apiURL = 'http://127.0.0.1:8000/api/'
-
-class CardsList extends React.Component {
-
-    render() {
-        return (
-            <table className="cards-list">
-                {this.props.cards.map(item => (
-                    <tr key={item.id}>
-                        <td>Edit button</td>
-                        <td>
-                            <h1>{item.front}</h1>
-                            <p>{item.back}</p>
-                        </td>
-                    </tr>
-                ))}
-
-            </table>
-        )
-    }
-
-}
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards: []
+            cards: [],
+            types: ["general", "code"]
         };
     }
 
@@ -53,8 +37,14 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <CardsList cards ={this.state.cards}/>
+            <div className="App">
+                <Nav />
+                <AddCard types={this.state.types} />
+                <TempAddCardUnfolded types={this.state.types} />
+                <CardsList
+                    cards={this.state.cards}
+                    types={this.state.types}
+                 />
                 <InputDemo />
             </div>
         );

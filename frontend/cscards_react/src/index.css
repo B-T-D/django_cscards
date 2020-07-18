@@ -12,16 +12,4 @@ code {
     monospace;
 }
 
-.cards-list {
-    font-family: Helvetica, sans-serif;
-    width: 95%;
-    color: #333;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-}
 
-.cards-list td {
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-}
