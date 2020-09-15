@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8fbeaa5d-31a1-4b6d-a1ed-d1e86408c282" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cscards_react/src/AddCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cscards_react/src/AddCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cscards_react/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cscards_react/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cscards_react/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cscards_react/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
