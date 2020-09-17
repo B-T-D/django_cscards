@@ -8,7 +8,11 @@ import { AddCard, TempAddCardUnfolded } from '../AddCard/AddCard';
 
 import './App.css';
 
-var apiURL = 'http://127.0.0.1:8000/api/v1/'
+const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
+const apiUrlCreateCard = apiUrlRoot + 'create/';
+const apiUrlListCards = apiUrlRoot + 'list/';
+const apiUrlStemEditCard = apiUrlRoot + 'edit/'; /* Last part of url is integer representing the card's pk. */
+const apiUrlStemDeleteCard = apiUrlRoot + 'edit/'; /* Final characters are integer pk + '/' */
 
 /* TODO something needs to tell it to re-fetch the cards set upon the render
     of some component. So that it doesn't require a page refresh to e.g. see
@@ -37,7 +41,7 @@ class App extends Component {
 
     getCards() {
         axios
-            .get(apiURL)
+            .get(apiUrlListCards)
             .then(res => {
                 this.setState({ cards: res.data });
             })
@@ -54,7 +58,7 @@ class App extends Component {
                 <AddCard types={this.state.types} />
                 <TempAddCardUnfolded
                     types={this.state.types}
-                    apiURLCreateCard={apiURL}
+                    apiURLCreateCard={apiUrlCreateCard}
                 />
                 <CardsList
                     cards={this.state.cards}
