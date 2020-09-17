@@ -1,5 +1,5 @@
 /* Delete if not needed for any code reuse or reference. Relic from July
-2020 tinkering. */ 
+2020 tinkering. */
 
 import React, { useState } from 'react';
 import axios from 'axios';
