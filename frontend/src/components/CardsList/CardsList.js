@@ -1,8 +1,8 @@
 import React from 'react';
 
-function TotalCards() {
+function TotalCards({ cards }) {
     return(
-        <h1>## Cards</h1>
+        <h1>{cards.length} Cards</h1>
     )
 }
 
@@ -26,12 +26,12 @@ function FilterButtons({ types }) {
     )
 }
 
-class CardsList extends React.Component {
+export class CardsList extends React.Component {
 
     render() {
         return (
             <div className="cards-list">
-                <TotalCards />
+                <TotalCards cards={this.props.cards} />
                 <FilterButtons types={this.props.types}/>
                 <table>
                     {this.props.cards.map(item => (
@@ -51,5 +51,3 @@ class CardsList extends React.Component {
     }
 
 }
-
-export default CardsList;

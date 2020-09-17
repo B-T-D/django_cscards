@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-class AddCard extends React.Component {
+export class AddCard extends React.Component {
 
     render() {
         return (
@@ -16,6 +16,10 @@ class AddCard extends React.Component {
 }
 
 class AddTypeButtons extends React.Component {
+
+    /* TODO fold/unfold can prob be done with conditional render logic. Render
+        folded; if x render unfolded; while not [refold-condition] unfolded remains
+        true */
 
     state = {
         generalClicked: false,
@@ -84,7 +88,7 @@ class AddTypeButtons extends React.Component {
     }
 }
 
-class TempAddCardUnfolded extends React.Component {
+export class TempAddCardUnfolded extends React.Component {
 
     state = {
         inputCard: {
@@ -185,6 +189,3 @@ class TempAddCardUnfolded extends React.Component {
         )
     }
 }
-
-export default AddCard;
-export { TempAddCardUnfolded };

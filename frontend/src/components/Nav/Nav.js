@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Nav = () => (
+export const Nav = () => (
 
     <nav className="App-nav">
         <ul>
@@ -22,5 +22,3 @@ const Nav = () => (
         </ul>
     </nav>
 );
-
-export default Nav;
