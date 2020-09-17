@@ -8,7 +8,7 @@ import { AddCard, TempAddCardUnfolded } from '../AddCard/AddCard';
 
 import './App.css';
 
-var apiURL = 'http://127.0.0.1:8000/api/'
+var apiURL = 'http://127.0.0.1:8000/api/v1'
 
 /* TODO something needs to tell it to re-fetch the cards set upon the render
     of some component. So that it doesn't require a page refresh to e.g. see
