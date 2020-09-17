@@ -60,7 +60,6 @@ class App extends Component {
                     cards={this.state.cards}
                     types={this.state.types}
                  />
-                <InputDemo />
             </div>
         );
     }
