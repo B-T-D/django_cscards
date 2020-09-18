@@ -30,6 +30,18 @@ function FilterButtons({ types }) {
 
 export class CardsList extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        // Method Binds
+        this.onDeleteRow = this.onDeleteRow.bind(this);
+    }
+
+    onDeleteRow(pk) { // pk argument must come back up from the single-card-based component that called delete.
+        alert("CardsList container's onDeleteRow called");
+        this.props.onDeleteCard(pk)
+    }
+
     render() {
         return(
             <div className="cards-list">
@@ -41,7 +53,7 @@ export class CardsList extends React.Component {
                             key={card.id}
                             card={card}
                             onUpdateCard={this.props.onUpdateCard}
-                            onDeleteCard={this.props.onDeleteCard}
+                            onDeleteCard={this.onDeleteRow}
                         />
                     ))}
                 </table>

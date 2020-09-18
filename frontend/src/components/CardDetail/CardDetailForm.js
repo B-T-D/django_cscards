@@ -58,6 +58,7 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
+        alert("handleSubmit was called");
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
@@ -79,6 +80,7 @@ export class CardDetailForm extends React.Component {
 
     render() {
         return(
+            <div>
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Category
@@ -107,8 +109,12 @@ export class CardDetailForm extends React.Component {
                         onChange={this.handleChangeKnown}
                     />
                 <br />
-                <button type="submit">Save</button>
-                {this.props.card ?
+                <button type="submit">
+                    Save
+                </button>
+
+            </form>
+            {this.props.card ?
                     <DeleteButton
                         onClick={this.handleDelete}
                     />
@@ -116,7 +122,7 @@ export class CardDetailForm extends React.Component {
                     null
 
                 }
-            </form>
+            </div>
         )
     }
 }
@@ -124,4 +130,5 @@ export class CardDetailForm extends React.Component {
 CardDetailForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onDeleteCard: PropTypes.func.isRequired,
+
 };
