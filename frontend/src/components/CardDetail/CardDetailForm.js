@@ -38,7 +38,6 @@ export class CardDetailForm extends React.Component {
     }
 
     handleChangeKnown(event) {
-        alert(event.target.value);
         this.setState({
             cardKnown: event.target.value
         })

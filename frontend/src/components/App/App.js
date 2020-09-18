@@ -81,9 +81,6 @@ class App extends Component {
             None
     */
     createCard(newCard) {
-        alert("App parent createCard was called");
-        console.log("App parent createCard was called");
-        alert(`newCard = ${JSON.stringify(newCard)}`);
         axios.post(apiUrlCreateCard, newCard
         ).then(response => {
             console.log("Response from API POST attempt:");
