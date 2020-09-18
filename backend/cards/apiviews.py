@@ -7,6 +7,10 @@ class ListCards(generics.ListCreateAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
 
-class EditCard(generics.RetrieveUpdateDestroyAPIView):
+class EditCard(generics.RetrieveUpdateAPIView):
+    queryset = Card.objects.all()
+    serializer_class = CardSerializer
+
+class DeleteCard(generics.DestroyAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer

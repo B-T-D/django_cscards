@@ -14,7 +14,7 @@ const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
 const apiUrlCreateCard = apiUrlRoot + 'create/';
 const apiUrlListCards = apiUrlRoot + 'list/';
 const apiUrlStemEditCard = apiUrlRoot + 'edit'; /* Last part of url is integer representing the card's pk. */
-const apiUrlStemDeleteCard = apiUrlRoot + 'edit'; /* Final characters are integer pk + '/' */
+const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are integer pk + '/' */
 
 /* TODO something needs to tell it to re-fetch the cards set upon the render
     of some component. So that it doesn't require a page refresh to e.g. see
@@ -102,15 +102,9 @@ class App extends Component {
     }
 
     deleteCard(pk) {
-        alert("App parent deleteCard called");
-        alert(`pk is ${JSON.stringify(pk)}`);
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
-        alert(`url is ${url}`);
         axios.delete(url
-        ).then(response => {
-            console.log("Deleted card");
-            console.log(response);
-        })
+        ).then(console.log("Deleted card"));
     }
 
     render() {
