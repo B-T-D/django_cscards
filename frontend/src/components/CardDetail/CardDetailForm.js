@@ -58,7 +58,6 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
-        alert("handleSubmit was called");
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
@@ -74,7 +73,6 @@ export class CardDetailForm extends React.Component {
     }
 
     handleDelete(e) {
-        alert(`In form: pk is ${this.props.card.id}`);
         this.props.onDeleteCard(this.props.card.id);
     }
 

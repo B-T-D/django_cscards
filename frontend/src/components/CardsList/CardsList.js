@@ -38,9 +38,11 @@ export class CardsList extends React.Component {
     }
 
     onDeleteRow(pk) { // pk argument must come back up from the single-card-based component that called delete.
-        alert("CardsList container's onDeleteRow called");
-        this.props.onDeleteCard(pk)
+        this.props.onDeleteCard(pk);
+        this.setState();
     }
+
+    // Todo goal is for the component to re-render on deletion. Because the props are different.
 
     render() {
         return(

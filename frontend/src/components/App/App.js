@@ -38,6 +38,7 @@ class App extends Component {
         this.createCard = this.createCard.bind(this);
         this.updateCard = this.updateCard.bind(this);
         this.deleteCard = this.deleteCard.bind(this);
+        this.getCards = this.getCards.bind(this);
     }
 
     componentDidMount() {
@@ -104,7 +105,7 @@ class App extends Component {
     deleteCard(pk) {
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
         axios.delete(url
-        ).then(console.log("Deleted card"));
+        ).then() /* Re-render after a card was deleted from the DB */
     }
 
     render() {

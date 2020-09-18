@@ -1,7 +1,8 @@
 import React from 'react';
 import { EditButton } from './EditButton';
 import { CardContent } from './CardContent';
-import { CardDetailForm } from '../CardDetail/CardDetailForm'
+import { CardDetailForm } from '../CardDetail/CardDetailForm';
+import { DeleteButton } from '../CardDetail/DeleteButton';
 
 export class CardRow extends React.Component {
 
@@ -50,7 +51,6 @@ export class CardRow extends React.Component {
                         onDeleteCard={this.props.onDeleteCard}
                     />
                     </td>
-                {"Placeholder for Expanded mode"}
                 </tr>)
         }
 
