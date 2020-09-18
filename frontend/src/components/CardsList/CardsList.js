@@ -1,4 +1,5 @@
 import React from 'react';
+import { CardRow } from './CardRow';
 
 function TotalCards({ cards }) {
     return(
@@ -29,25 +30,16 @@ function FilterButtons({ types }) {
 export class CardsList extends React.Component {
 
     render() {
-        return (
+        return(
             <div className="cards-list">
                 <TotalCards cards={this.props.cards} />
-                <FilterButtons types={this.props.types}/>
+                <FilterButtons types={this.props.types} />
                 <table>
-                    {this.props.cards.map(item => (
-                        <tr key={item.id}>
-                            <td>
-                                <button>Edit</button>
-                            </td>
-                            <td>
-                                <h1>{item.front}</h1>
-                                <p>{item.back}</p>
-                            </td>
-                        </tr>
+                    {this.props.cards.map(card => (
+                        <CardRow card={card} />
                     ))}
                 </table>
             </div>
         )
     }
-
 }
