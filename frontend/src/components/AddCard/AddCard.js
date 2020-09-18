@@ -29,7 +29,6 @@ export class AddCard extends React.Component {
                         onClick={this.toggleExpanded}
                     />
                     <CardDetailForm
-                        card={this.state.newCard}
                         onSubmit={this.props.onCreateCard}
                     />
                 </div>

@@ -36,7 +36,11 @@ export class CardsList extends React.Component {
                 <FilterButtons types={this.props.types} />
                 <table>
                     {this.props.cards.map(card => (
-                        <CardRow card={card} />
+                        <CardRow
+                            key={card.id}
+                            card={card}
+                            onUpdateCard={this.props.onUpdateCard}
+                        />
                     ))}
                 </table>
             </div>

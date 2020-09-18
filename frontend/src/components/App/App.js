@@ -13,8 +13,8 @@ import './App.css';
 const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
 const apiUrlCreateCard = apiUrlRoot + 'create/';
 const apiUrlListCards = apiUrlRoot + 'list/';
-const apiUrlStemEditCard = apiUrlRoot + 'edit/'; /* Last part of url is integer representing the card's pk. */
-const apiUrlStemDeleteCard = apiUrlRoot + 'edit/'; /* Final characters are integer pk + '/' */
+const apiUrlStemEditCard = apiUrlRoot + 'edit'; /* Last part of url is integer representing the card's pk. */
+const apiUrlStemDeleteCard = apiUrlRoot + 'edit'; /* Final characters are integer pk + '/' */
 
 /* TODO something needs to tell it to re-fetch the cards set upon the render
     of some component. So that it doesn't require a page refresh to e.g. see
@@ -36,6 +36,7 @@ class App extends Component {
         this.setManageMode = this.setManageMode.bind(this);
         this.setReviewMode = this.setReviewMode.bind(this);
         this.createCard = this.createCard.bind(this);
+        this.updateCard = this.updateCard.bind(this);
     }
 
     componentDidMount() {
@@ -89,6 +90,16 @@ class App extends Component {
         });
     }
 
+    updateCard(card, pk) {
+        const url = `${apiUrlStemEditCard}/${pk}/`;
+        axios.put(url, card
+        ).then(response => {
+            console.log("Response from API PUT request:");
+            console.log(response);
+            console.log(JSON.stringify(response.data));
+        })
+    }
+
     render() {
 
         const CurrentMode = (this.state.mode === 'manage') ? Manage : Review;
@@ -104,7 +115,7 @@ class App extends Component {
                     cards={this.state.cards}
                     types={this.state.types}
                     onCreateCard={this.createCard}
-
+                    onUpdateCard={this.updateCard}
                 />
             </div>
         )

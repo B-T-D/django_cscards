@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class CardDetailForm extends React.Component {
 
@@ -17,6 +18,17 @@ export class CardDetailForm extends React.Component {
         this.handleChangeBack = this.handleChangeBack.bind(this);
         this.handleChangeKnown = this.handleChangeKnown.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        if (this.props.card) {
+            this.setState({
+                cardType: this.props.card.type,
+                cardFront: this.props.card.front,
+                cardBack: this.props.card.back,
+                cardKnown: this.props.card.known
+            })
+        }
     }
 
     handleCardTypeChange(e) {
@@ -50,7 +62,12 @@ export class CardDetailForm extends React.Component {
             back: this.state.cardBack,
             known: this.state.cardKnown
         }
-        this.props.onSubmit(submitObject);
+        if (this.props.card) {
+            this.props.onSubmit(submitObject, this.props.card.id) // The update API caller method takes the pk as a second arg
+        } else {
+            this.props.onSubmit(submitObject); // The create API-caller only takes one arg, the contents. Backend will assign a pk.
+        }
+
     }
 
     render() {
@@ -84,14 +101,12 @@ export class CardDetailForm extends React.Component {
                     />
                 <br />
                 <button type="submit">Save</button>
-
             </form>
         )
     }
 }
 
-/*
+
 CardDetailForm.propTypes = {
-    card: React.PropTypes.object.isRequired
+    onSubmit: PropTypes.func.isRequired
 };
-*/

@@ -5,7 +5,11 @@ export class EditButton extends React.Component {
     render() {
         return(
             <td>
-                <button>Edit</button>
+                <button
+                    onClick={this.props.onClick}
+                >
+                    {this.props.expanded ? "Cancel" : "Edit"}
+                </button>
             </td>
         );
     }
