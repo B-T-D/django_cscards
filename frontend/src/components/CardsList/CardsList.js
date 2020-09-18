@@ -1,9 +1,9 @@
 import React from 'react';
 import { CardRow } from './CardRow';
 
-function TotalCards({ cards }) {
+function TotalCards({ numCards }) {
     return(
-        <h1>{cards.length} Cards</h1>
+        <h1>{numCards} Cards</h1>
     )
 }
 
@@ -32,7 +32,7 @@ export class CardsList extends React.Component {
     render() {
         return(
             <div className="cards-list">
-                <TotalCards cards={this.props.cards} />
+                <TotalCards numCards={this.props.cards.length} />
                 <FilterButtons types={this.props.types} />
                 <table>
                     {this.props.cards.map(card => (

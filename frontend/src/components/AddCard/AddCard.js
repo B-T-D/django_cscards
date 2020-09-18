@@ -36,7 +36,7 @@ export class AddCard extends React.Component {
             )
         }
 
-        const Contracted = () => {
+        const Collapsed = () => {
             return (
                 <AddToggleButton
                     expanded={this.state.expanded}
@@ -45,7 +45,7 @@ export class AddCard extends React.Component {
             )
         }
 
-        const CurrentViewMode = this.state.expanded ? Expanded: Contracted;
+        const CurrentViewMode = this.state.expanded ? Expanded: Collapsed;
 
         return (
             <div className="App-nav">
