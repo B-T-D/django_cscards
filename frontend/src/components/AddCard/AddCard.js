@@ -1,15 +1,55 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { CardDetailForm } from '../CardDetail/CardDetailForm';
+import { AddToggleButton } from './AddButton';
 
 export class AddCard extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            expanded: false,
+        }
+
+        // Method Binds
+        this.toggleExpanded = this.toggleExpanded.bind(this);
+    }
+
+    toggleExpanded() {
+        this.setState(
+            {expanded: (!this.state.expanded)}
+        );
+    }
+
     render() {
+        const Expanded = () => {
+        return (
+                <div>
+                    <AddToggleButton
+                        expanded={this.state.expanded}
+                        onClick={this.toggleExpanded}
+                    />
+                    <CardDetailForm
+                        card={this.state.newCard}
+                        onSubmit={this.props.onCreateCard}
+                    />
+                </div>
+            )
+        }
+
+        const Contracted = () => {
+            return (
+                <AddToggleButton
+                    expanded={this.state.expanded}
+                    onClick={this.toggleExpanded}
+                />
+            )
+        }
+
+        const CurrentViewMode = this.state.expanded ? Expanded: Contracted;
+
         return (
             <div className="App-nav">
-                <h1>Add a Card</h1>
-                <AddTypeButtons
-                    types={this.props.types}
-                />
+                <CurrentViewMode />
             </div>
         )
     }
@@ -104,7 +144,6 @@ export class TempAddCardUnfolded extends React.Component {
     }
 
 
-
     setInputCardType = event => {
         this.setState({
             inputCardType: event.target.value
@@ -135,20 +174,7 @@ export class TempAddCardUnfolded extends React.Component {
         this.addCard(newCard)
     }
 
-    addCard(newCard) {
-        axios.post(this.props.apiURLCreateCard, {
 
-            "type": 1, // TODO connect to type set by buttons
-            "front": newCard.front,
-            "back": newCard.back,
-            "known": false
-        })
-            .then(res => {
-                console.log("res from api post attempt:")
-                console.log(res)
-                console.log(res.data)
-            })
-    }
 
     debugPrint = event => {
         console.log("printing from debug print test button:")
@@ -158,7 +184,7 @@ export class TempAddCardUnfolded extends React.Component {
     render() {
         return (
             <div>Temp manual unfolded prototype
-                <div className="App-nav">
+                <div>
                     <h1>Add a Card</h1>
                     <AddTypeButtons
                         types={this.props.types}

@@ -5,6 +5,8 @@ import InputDemo from '../../InputDemo';
 import { Nav } from '../Nav/Nav';
 import { CardsList } from '../CardsList/CardsList';
 import { AddCard, TempAddCardUnfolded } from '../AddCard/AddCard';
+import { Manage } from '../Manage/Manage';
+import { Review } from '../Review/Review';
 
 import './App.css';
 
@@ -26,8 +28,14 @@ class App extends Component {
         super(props);
         this.state = {
             cards: [],
-            types: ["general", "code"]
+            types: ["general", "code"],
+            mode: 'manage'
         };
+
+        // Method Binds:
+        this.setManageMode = this.setManageMode.bind(this);
+        this.setReviewMode = this.setReviewMode.bind(this);
+        this.createCard = this.createCard.bind(this);
     }
 
     componentDidMount() {
@@ -51,21 +59,58 @@ class App extends Component {
             })
     }
 
+    setManageMode() {
+        this.setState(
+            {mode: 'manage'}
+        );
+    }
+
+    setReviewMode() {
+        this.setState(
+            {mode: 'review'}
+        );
+    }
+
+    /**postCard(): Makes HTTP POST request to the backend API to add a new
+        card to the database.
+
+        Args:
+            newCard (object): A JS object with all fields expected by the API
+                (i.e. type, front, back, and known--backend assigns the pk).
+        Returns:
+            None
+    */
+    createCard(newCard) {
+        alert("App parent createCard was called");
+        console.log("App parent createCard was called");
+        alert(`newCard = ${JSON.stringify(newCard)}`);
+        axios.post(apiUrlCreateCard, newCard
+        ).then(response => {
+            console.log("Response from API POST attempt:");
+            console.log(response);
+            console.log(response.data);
+        });
+    }
+
     render() {
+
+        const CurrentMode = (this.state.mode === 'manage') ? Manage : Review;
+
         return (
             <div className="App">
-                <Nav />
-                <AddCard types={this.state.types} />
-                <TempAddCardUnfolded
-                    types={this.state.types}
-                    apiURLCreateCard={apiUrlCreateCard}
+                <Nav
+                    onSetManageMode={this.setManageMode}
+                    onSetReviewMode={this.setReviewMode}
                 />
-                <CardsList
+
+                <CurrentMode
                     cards={this.state.cards}
                     types={this.state.types}
-                 />
+                    onCreateCard={this.createCard}
+
+                />
             </div>
-        );
+        )
     }
 }
 

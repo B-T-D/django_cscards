@@ -3,9 +3,12 @@ import React from 'react';
 export class ReviewModeSelect extends React.Component {
 
     render() {
-
-        return (
-            <button>CS Flash Cards</button>
+        return(
+            <button onClick={this.props.onSetReviewMode}>
+                CS Flash Cards
+            </button>
         );
     }
 }
+
+
