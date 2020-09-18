@@ -12,12 +12,18 @@ export class CardDetailForm extends React.Component {
         }
 
         // Method Binds
+        this.handleCardTypeChange = this.handleCardTypeChange.bind(this);
         this.handleChangeFront = this.handleChangeFront.bind(this);
         this.handleChangeBack = this.handleChangeBack.bind(this);
+        this.handleChangeKnown = this.handleChangeKnown.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
+    handleCardTypeChange(e) {
+        this.setState({
+            cardType: e.target.value
+        });
+    }
 
     handleChangeFront(e) {
         this.setState({
@@ -28,6 +34,13 @@ export class CardDetailForm extends React.Component {
     handleChangeBack(e) {
         this.setState({
             cardBack: e.target.value
+        })
+    }
+
+    handleChangeKnown(event) {
+        alert(event.target.value);
+        this.setState({
+            cardKnown: event.target.value
         })
     }
 
@@ -44,6 +57,13 @@ export class CardDetailForm extends React.Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
+                <label>
+                    Category
+                    <select value={this.state.cardType} onChange={this.handleCardTypeChange}>
+                        <option value={1}>General</option>
+                        <option value={2}>Code</option>
+                    </select>
+                </label>
                 <h4>Front of card</h4>
                     <input
                         type="text"
@@ -56,6 +76,14 @@ export class CardDetailForm extends React.Component {
                         value={this.state.cardBack}
                         onChange={this.handleChangeBack}
                     />
+                <h4>Known</h4>
+                    <input
+                        type="checkbox"
+                        name="known (name attribute)"
+                        checked={this.state.cardKnown}
+                        onChange={this.handleChangeKnown}
+                    />
+                <br />
                 <button type="submit">Save</button>
 
             </form>
