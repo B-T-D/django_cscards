@@ -23,6 +23,7 @@ export class Manage extends React.Component {
                     cards={this.props.cards}
                     types={this.props.types}
                     onUpdateCard={this.props.onUpdateCard}
+                    onDeleteCard={this.props.onDeleteCard}
                 />
             </div>
         );

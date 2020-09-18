@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DeleteButton } from './DeleteButton';
 
 export class CardDetailForm extends React.Component {
 
@@ -18,6 +19,7 @@ export class CardDetailForm extends React.Component {
         this.handleChangeBack = this.handleChangeBack.bind(this);
         this.handleChangeKnown = this.handleChangeKnown.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount() {
@@ -70,6 +72,11 @@ export class CardDetailForm extends React.Component {
 
     }
 
+    handleDelete(e) {
+        alert(`In form: pk is ${this.props.card.id}`);
+        this.props.onDeleteCard(this.props.card.id);
+    }
+
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
@@ -101,12 +108,20 @@ export class CardDetailForm extends React.Component {
                     />
                 <br />
                 <button type="submit">Save</button>
+                {this.props.card ?
+                    <DeleteButton
+                        onClick={this.handleDelete}
+                    />
+                    :
+                    null
+
+                }
             </form>
         )
     }
 }
 
-
 CardDetailForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    onDeleteCard: PropTypes.func.isRequired,
 };

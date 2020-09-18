@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { CardRow } from './CardRow';
 
 function TotalCards({ numCards }) {
@@ -40,10 +41,15 @@ export class CardsList extends React.Component {
                             key={card.id}
                             card={card}
                             onUpdateCard={this.props.onUpdateCard}
+                            onDeleteCard={this.props.onDeleteCard}
                         />
                     ))}
                 </table>
             </div>
         )
     }
+}
+
+CardsList.propTypes = {
+    onDeleteCard: PropTypes.func.isRequired,
 }

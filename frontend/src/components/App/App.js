@@ -37,6 +37,7 @@ class App extends Component {
         this.setReviewMode = this.setReviewMode.bind(this);
         this.createCard = this.createCard.bind(this);
         this.updateCard = this.updateCard.bind(this);
+        this.deleteCard = this.deleteCard.bind(this);
     }
 
     componentDidMount() {
@@ -100,6 +101,18 @@ class App extends Component {
         })
     }
 
+    deleteCard(pk) {
+        alert("App parent deleteCard called");
+        alert(`pk is ${JSON.stringify(pk)}`);
+        const url = `${apiUrlStemDeleteCard}/${pk}/`;
+        alert(`url is ${url}`);
+        axios.delete(url
+        ).then(response => {
+            console.log("Deleted card");
+            console.log(response);
+        })
+    }
+
     render() {
 
         const CurrentMode = (this.state.mode === 'manage') ? Manage : Review;
@@ -116,6 +129,7 @@ class App extends Component {
                     types={this.state.types}
                     onCreateCard={this.createCard}
                     onUpdateCard={this.updateCard}
+                    onDeleteCard={this.deleteCard}
                 />
             </div>
         )

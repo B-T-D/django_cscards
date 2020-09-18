@@ -47,6 +47,7 @@ export class CardRow extends React.Component {
                     <CardDetailForm
                         card={this.props.card}
                         onSubmit={this.props.onUpdateCard}
+                        onDeleteCard={this.props.onDeleteCard}
                     />
                     </td>
                 {"Placeholder for Expanded mode"}
