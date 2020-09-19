@@ -13,7 +13,9 @@ function FilterButtons({ types }) {
         <div className="FilterButtons">
             <ul>
                 {types.map(item => (
-                    <li className="FilterButtons">
+                    <li className="FilterButtons"
+                        key={item}
+                    >
                         <button>{item}</button>
                     </li>
                 ))}
