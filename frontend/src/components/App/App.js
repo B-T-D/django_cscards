@@ -22,14 +22,17 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     you do this by calling the api-fetcher function with the right lifecycle
     method. */
 
+/* TODO add a settings model on the backend. Can store e.g. whether app starts as
+    manage or review. Careful though about muddling in view logic with database logic. */
+
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             cards: [],
-            types: ["general", "code"],
-            mode: 'manage'
+            categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
+            mode: 'review'
         };
 
         // Method Binds:
@@ -109,7 +112,6 @@ class App extends Component {
     }
 
     render() {
-
         const CurrentMode = (this.state.mode === 'manage') ? Manage : Review;
 
         return (
@@ -118,14 +120,22 @@ class App extends Component {
                     onSetManageMode={this.setManageMode}
                     onSetReviewMode={this.setReviewMode}
                 />
-
-                <CurrentMode
-                    cards={this.state.cards}
-                    types={this.state.types}
-                    onCreateCard={this.createCard}
-                    onUpdateCard={this.updateCard}
-                    onDeleteCard={this.deleteCard}
-                />
+                {this.state.mode === 'manage' ?
+                    <Manage
+                        cards={this.state.cards}
+                        types={this.state.categories}
+                        onCreateCard={this.createCard}
+                        onUpdateCard={this.updateCard}
+                        onDeleteCard={this.deleteCard}
+                    />
+                        :
+                    <Review
+                        cards={this.state.cards}
+                        categories={this.state.categories}
+                        onUpdateCard={this.updateCard}
+                        onDeleteCard={this.deleteCard}
+                     />
+                }
             </div>
         )
     }
