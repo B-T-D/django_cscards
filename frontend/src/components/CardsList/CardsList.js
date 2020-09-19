@@ -30,6 +30,13 @@ function FilterButtons({ types }) {
     )
 }
 
+function compareFront(a, b) {
+    if (a.front.toLowerCase() < b.front.toLowerCase()) {
+        return -1
+    };
+    return 1;
+}
+
 export class CardsList extends React.Component {
 
     constructor(props) {
@@ -47,6 +54,9 @@ export class CardsList extends React.Component {
     // Todo goal is for the component to re-render on deletion. Because the props are different.
 
     render() {
+
+        this.props.cards.sort(compareFront); // Todo ugly naming and placement, but does work to alphabetically sort.
+
         return(
             <div className="cards-list">
                 <TotalCards numCards={this.props.cards.length} />
@@ -69,5 +79,6 @@ export class CardsList extends React.Component {
 }
 
 CardsList.propTypes = {
+    cards: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDeleteCard: PropTypes.func.isRequired,
 }

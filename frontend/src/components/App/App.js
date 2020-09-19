@@ -25,7 +25,7 @@ class App extends Component {
         this.state = {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
-            mode: 'review'
+            mode: 'manage'
         };
 
         // Method Binds:
@@ -35,16 +35,14 @@ class App extends Component {
         this.updateCard = this.updateCard.bind(this);
         this.deleteCard = this.deleteCard.bind(this);
         this.getCards = this.getCards.bind(this);
+
+//        this.sortCards = this.sortCards.bind(this);
     }
 
     componentDidMount() {
         this.getCards();
+//        this.sortCards();
     }
-
-    /* TODO problem here isn't that it doesn't update, it's that an update
-        doesn't cause another getCards() call. I think. Because DidMount only
-        calls on the first time the component renders. Moving cards state
-         down the components tree in any event. */
 
     getCards() {
         axios
@@ -57,6 +55,19 @@ class App extends Component {
                 console.log("caught an error");
             })
     }
+
+    // TODO quick experiment
+
+//    sortCards() {
+//        alert("sortCards was called");
+//        this.state.cards.sort();
+        /*
+        this.setState( // TODO if this works it'll still be calling render redundantly maybe
+            {cards: this.state.cards.sort((a, b) => (a.front > b.front) ? 1 : -1)}
+        );
+        */
+//    }
+
 
     setManageMode() {
         this.setState(

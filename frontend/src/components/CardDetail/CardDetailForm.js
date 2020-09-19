@@ -76,6 +76,13 @@ export class CardDetailForm extends React.Component {
         this.props.onDeleteCard(this.props.card.id);
     }
 
+    /* TODO use event.preventDefault or avoid the <form> element entirely, to
+        stop "submit" from refreshing the entire page. Need finer control than
+        that to have smooth-acting app. E.g. need it not to refresh and go to
+        the Review view out of the the manage view--there's no obvious way to
+        avoid that happening (when the initial on-first-mount view is Review)
+        so long as using the default <form /> --> "submit" behavior. */
+
     render() {
         return(
             <div>

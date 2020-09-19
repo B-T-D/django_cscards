@@ -14,10 +14,18 @@ const DeleteSvgFill = () => {
     )
 }
 
+const onMouseOver = () => {
+    console.log("const onMouseOver was called in DeleteButton.js");
+}
+
 export const DeleteButton = (props) => {
     return (
         <form>
-            <button type="submit" onClick={props.onClick}>
+            <button
+                type="submit"
+                onClick={props.onClick}
+                onMouseOver={onMouseOver}
+            >
                 <DeleteSvgFill />
             </button>
         </form>
