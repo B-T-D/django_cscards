@@ -51,4 +51,4 @@ FlashCard.propTypes = {
         controlErroneousProperty: PropTypes.bool
     }).isRequired,
 }
-// kjkljklkjhkjh
+

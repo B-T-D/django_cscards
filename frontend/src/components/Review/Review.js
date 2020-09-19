@@ -34,8 +34,6 @@ export class Review extends React.Component {
     }
 
     render() {
-        console.log(JSON.stringify(this.props.cards));
-        console.log(`first card by array subscripting:\n${JSON.stringify(this.props.cards[0])}`);
         return(
             <div>
                 <p>Review mode</p>
@@ -51,5 +49,4 @@ export class Review extends React.Component {
 
 Review.propTypes = {
     cards: PropTypes.arrayOf(PropTypes.object).isRequired,
-} // TODO validate array shape and element types
-//klklkl;lk
+}
