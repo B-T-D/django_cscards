@@ -15,3 +15,7 @@ export const DeleteButton = (props) => {
         </form>
     )
 }
+
+DeleteButton.propTypes = {
+    onClick: PropTypes.func.isRequired
+}

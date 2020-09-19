@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import InputDemo from '../../InputDemo';
 import { Nav } from '../Nav/Nav';
-import { CardsList } from '../CardsList/CardsList';
-import { AddCard, TempAddCardUnfolded } from '../AddCard/AddCard';
 import { Manage } from '../Manage/Manage';
 import { Review } from '../Review/Review';
 
@@ -16,14 +13,10 @@ const apiUrlListCards = apiUrlRoot + 'list/';
 const apiUrlStemEditCard = apiUrlRoot + 'edit'; /* Last part of url is integer representing the card's pk. */
 const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are integer pk + '/' */
 
-/* TODO something needs to tell it to re-fetch the cards set upon the render
-    of some component. So that it doesn't require a page refresh to e.g. see
-    a newly added card and see the total-cards counter increment. Would guess
-    you do this by calling the api-fetcher function with the right lifecycle
-    method. */
-
 /* TODO add a settings model on the backend. Can store e.g. whether app starts as
-    manage or review. Careful though about muddling in view logic with database logic. */
+    manage or review. Careful though about muddling in view logic with database logic.
+    Should prob tie it to the "user".
+    */
 
 
 class App extends Component {
@@ -112,7 +105,6 @@ class App extends Component {
     }
 
     render() {
-        const CurrentMode = (this.state.mode === 'manage') ? Manage : Review;
 
         return (
             <div className="App">

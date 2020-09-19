@@ -52,14 +52,16 @@ export class CardsList extends React.Component {
                 <TotalCards numCards={this.props.cards.length} />
                 <FilterButtons types={this.props.types} />
                 <table>
-                    {this.props.cards.map(card => (
-                        <CardRow
-                            key={card.id}
-                            card={card}
-                            onUpdateCard={this.props.onUpdateCard}
-                            onDeleteCard={this.onDeleteRow}
-                        />
-                    ))}
+                    <tbody>
+                        {this.props.cards.map(card => (
+                            <CardRow
+                                key={card.id}
+                                card={card}
+                                onUpdateCard={this.props.onUpdateCard}
+                                onDeleteCard={this.onDeleteRow}
+                            />
+                        ))}
+                    </tbody>
                 </table>
             </div>
         )
