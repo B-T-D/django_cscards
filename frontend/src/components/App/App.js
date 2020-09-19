@@ -30,7 +30,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards: [],
+            cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
             mode: 'review'
         };

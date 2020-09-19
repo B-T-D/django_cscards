@@ -6,10 +6,22 @@ export class FlashCardButtons extends React.Component {
 
         return(
             <div>
-                <button>Prev</button>
-                <button>Flip</button>
+                <button
+                    onClick={this.props.onPrev}
+                >
+                    Prev
+                </button>
+                <button
+                    onClick={this.props.onFlip}
+                >
+                    Flip
+                </button>
                 <button>I know it</button>
-                <button>Next</button>
+                <button
+                    onClick={this.props.onNext}
+                >
+                    Next
+                </button>
 
             </div>
         );

@@ -8,18 +8,41 @@ export class Review extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            side: 'front',
             currentCardIndex: 0
         }
+
+        // Method Binds
+        this.prevCard = this.prevCard.bind(this);
+        this.nextCard = this.nextCard.bind(this);
+    }
+
+    prevCard() {
+        let newIndex = this.state.currentCardIndex - 1;
+        if (newIndex < 0) { // Loop around if it hit zero
+            newIndex = this.props.cards.length - 1
+        }
+        this.setState({
+            currentCardIndex: newIndex
+        })
+    }
+
+    nextCard() {
+        const newIndex = (this.state.currentCardIndex + 1) % this.props.cards.length; // Loop around if go past the last element
+        this.setState({
+            currentCardIndex: newIndex
+        })
     }
 
     render() {
         console.log(JSON.stringify(this.props.cards));
+        console.log(`first card by array subscripting:\n${JSON.stringify(this.props.cards[0])}`);
         return(
             <div>
                 <p>Review mode</p>
                 <FlashCard
-                    card={this.props.cards[0]}
+                    card={this.props.cards[this.state.currentCardIndex]}
+                    onPrev={this.prevCard}
+                    onNext={this.nextCard}
                 />
             </div>
         );
