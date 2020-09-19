@@ -26,7 +26,6 @@ export class FlashCard extends React.Component {
     render() {
         return(
             <div>
-                <p>I am a flashcard</p>
                 {this.state.flipped ?
                     <Back card={this.props.card} />
                     :
