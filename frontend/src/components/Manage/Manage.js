@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CardsList } from '../CardsList/CardsList';
 import { AddCard } from '../AddCard/AddCard';
-import { CardDetail } from '../CardDetail/CardDetail';
 
 /* TODO careful about "prop drilling". Not a super huge app but still might be
     more maintainable to use context some places instead of many-layered
