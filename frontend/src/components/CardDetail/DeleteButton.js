@@ -6,6 +6,9 @@ way to make React refresh the API data on button-click. A "submit" button
 triggers page refresh automatically, that's what the "save" button in the
 update does.*/
 
+/* TODO you can use these SVGs with less html gore than this. See Bootstrap
+    documentation. */
+
 const DeleteSvgFill = () => {
     return ( // Bootstrap "trash fill"
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

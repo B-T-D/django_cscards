@@ -83,6 +83,8 @@ export class CardDetailForm extends React.Component {
         avoid that happening (when the initial on-first-mount view is Review)
         so long as using the default <form /> --> "submit" behavior. */
 
+    /* TODO save button: use bootstrap "Server" SVG (database symbol thing). */
+
     render() {
         return(
             <div>
