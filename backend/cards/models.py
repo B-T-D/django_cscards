@@ -7,3 +7,5 @@ class Card(models.Model):
     front = models.TextField()
     back = models.TextField()
     known = models.BooleanField(default=False)
+
+    # TODO rename "type" to "category".
