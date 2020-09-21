@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="8fbeaa5d-31a1-4b6d-a1ed-d1e86408c282" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cards/apiviews.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/apiviews.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/cards/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cards/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/permissions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/cards/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cscards/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cscards/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cscards/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cscards/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
