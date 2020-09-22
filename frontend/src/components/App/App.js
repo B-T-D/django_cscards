@@ -24,8 +24,8 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     and to keep the auth handling as modular and maintainable as possible. */
 
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
-let accessToken = '';
-let refreshToken = '';
+let accessToken = null;
+let refreshToken = null;
 
 
 
@@ -36,7 +36,7 @@ class App extends Component {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
             mode: 'manage',
-            user: 'testuser'
+            user: ''
         };
 
         // Method Binds:
@@ -61,8 +61,8 @@ class App extends Component {
 //        this.sortCards();
     }
 
-    getJWToken(username, password) {
-        axios.post(apiUrlGetJWToken, {
+    async getJWToken(username, password) { // Async here is just an easy way to make it return a promise
+        await axios.post(apiUrlGetJWToken, {
             "username": username,
             "password": password
         }).then(this.jwtSuccess, this.jwtFail);
@@ -71,19 +71,22 @@ class App extends Component {
     jwtSuccess(response) {
         alert("jwtSuccess() called");
         accessToken = response.data.access;
-        alert(`accessToken is now ${accessToken}`);
-        alert(`jwtSuccess() will now call getCards`);
         this.getCards();
     }
 
     jwtFail() {
-        alert("jwtFail() called");
+        alert("jwtFail() called--bad login request");
     }
 
     async submitLogin(username, password) {
         /* Makes a POST request to the API's JWT endpoint with the provided
             credentials. */
-        this.getJWToken(username, password);
+        await this.getJWToken(username, password);
+        if (accessToken) {
+            this.setState({
+                user: username
+            })
+        }
         // TODO set state.user to username iff and only iff a valid JWT came back.
     }
 
@@ -93,7 +96,6 @@ class App extends Component {
     }
 
     getCards() {
-        alert(`getCards was called, accessToken at the time was ${accessToken}`);
         if (accessToken) {
             axios
             .get(apiUrlListCards, {
@@ -103,7 +105,6 @@ class App extends Component {
 
             })
             .then(response => {
-                alert(`response to GET card was ${JSON.stringify(response)}`);
                 this.setState({ cards: response.data });
             })
             .catch(err => {
@@ -111,7 +112,7 @@ class App extends Component {
                 console.log("caught an error");
             })
         } else {
-            alert('aborted getCards() for lack of access token');
+            console.log('aborted getCards() for lack of access token');
         }
 
     }
