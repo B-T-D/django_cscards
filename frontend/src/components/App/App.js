@@ -6,9 +6,10 @@ import { Nav } from '../Nav/Nav';
 import { Manage } from '../Manage/Manage';
 import { Review } from '../Review/Review';
 
+import { apiUrlRoot, axiosInstance } from '../../util/axiosAPI';
+
 import './App.css';
 
-const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
 const apiUrlCreateCard = apiUrlRoot + 'create/';
 const apiUrlListCards = apiUrlRoot + 'list/';
 const apiUrlStemEditCard = apiUrlRoot + 'edit'; /* Last part of url is integer representing the card's pk. */
@@ -25,8 +26,6 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
 let accessToken = localStorage.getItem('access_token');
 let refreshToken = null;
-
-
 
 class App extends Component {
     constructor(props) {
@@ -69,7 +68,7 @@ class App extends Component {
     }
 
     async getJWToken(username, password) { // Async here is just an easy way to make it return a promise
-        await axios.post(apiUrlGetJWToken, {
+        await axiosInstance.post(apiUrlGetJWToken, {
             "username": username,
             "password": password
         }).then(this.jwtSuccess, this.jwtFail);
