@@ -48,6 +48,7 @@ class App extends Component {
         this.getCards = this.getCards.bind(this);
 
         this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
+        this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
@@ -55,6 +56,12 @@ class App extends Component {
 
 //        this.sortCards = this.sortCards.bind(this);
     }
+
+    /* TODO create a standalone axios instance to DRY out the code. See
+        https://hackernoon.com/110percent-complete-jwt-authentication-with-django-and-react-2020-iejq34ta
+        The instance can handle constructing and otherwise dealing with the
+        JWT headers. */
+
 
     componentDidMount() {
         this.getCards();
@@ -117,9 +124,7 @@ class App extends Component {
         // TODO set state.user to username iff and only iff a valid JWT came back.
     }
 
-    handleClickJwt(event) {
-        localStorage.setItem('access_token', null);
-    }
+
 
     getCards() {
         if (accessToken) {
@@ -207,11 +212,22 @@ class App extends Component {
         ).then() /* Re-render after a card was deleted from the DB */
     }
 
+    // TODO -- temp debug buttons
+
+    handleClickJwt(event) {
+        localStorage.setItem('access_token', null);
+    }
+
+    handleClickPrintAccessToken(e) {
+        console.log(localStorage.getItem('access_token'));
+    }
+
     render() {
 
         return (
             <div className="App">
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
+                <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
 
                 <Nav
                     onSetManageMode={this.setManageMode}

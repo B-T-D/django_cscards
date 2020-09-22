@@ -141,6 +141,13 @@ REST_FRAMEWORK = {
     ]
 }
 
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True, # The sjwt package can handle token rotation, no need to do it on frontend or manually on backend.
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
+}
+
 # TODO whitelist whatever the origin is for a heroku dyno running the react
 #   frontend
 CORS_ORIGIN_WHITELIST = (
