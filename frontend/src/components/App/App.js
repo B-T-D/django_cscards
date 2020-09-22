@@ -24,7 +24,7 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     and to keep the auth handling as modular and maintainable as possible. */
 
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
-let accessToken = null;
+let accessToken = localStorage.getItem('access_token');
 let refreshToken = null;
 
 
@@ -68,9 +68,36 @@ class App extends Component {
         }).then(this.jwtSuccess, this.jwtFail);
     }
 
+    useToken() {
+        /* Return a valid access token if one is available without requesting
+            new login. */
+
+        // First see if there's a valid access token in localStorage
+
+
+        // If not, see if there's a valid refresh token in local Storage.
+            // If there is, redeem it for a new access token, then return that access token
+
+        // If no valid token available, return a signal indicating login is needed
+    }
+
+    validateAccessToken() {
+        /* Return true if the access token stored in local storage is a valid
+            one, else False */
+        const currentToken = localStorage.getItem('access_token');
+        axios.get(apiUrlCreateCard, {
+            headers: {"Authorization": "Bearer " + currentToken}
+        })
+        .then(response => alert(`response.status was ${response.status}`))
+                    // TODO have a lightweight ping API endpoint rather than requesting the full cards set
+        return false; // TODO placeholder
+    }
+
     jwtSuccess(response) {
         alert("jwtSuccess() called");
         accessToken = response.data.access;
+        localStorage.setItem('access_token', response.data.access);
+        localStorage.setItem('refresh_token', response.data.refresh);
         this.getCards();
     }
 
@@ -91,8 +118,7 @@ class App extends Component {
     }
 
     handleClickJwt(event) {
-        this.getJWToken(this.state.user, "testpass123")
-        .then(this.getCards());
+        localStorage.setItem('access_token', null);
     }
 
     getCards() {
@@ -100,7 +126,7 @@ class App extends Component {
             axios
             .get(apiUrlListCards, {
                 headers: {
-                    "Authorization": "Bearer " + accessToken,
+                    "Authorization": "Bearer " + localStorage.getItem('access_token'),
                 }
 
             })
@@ -152,11 +178,16 @@ class App extends Component {
             None
     */
     createCard(newCard) { //TODO add access token to request header
-        axios.post(apiUrlCreateCard, newCard
+        const authHeader = {
+            headers: {"Authorization": "Bearer " + localStorage.getItem('access_token')}
+        }
+        alert(`${JSON.stringify(authHeader)}`);
+        axios.post(apiUrlCreateCard, newCard, authHeader
         ).then(response => {
             console.log("Response from API POST attempt:");
             console.log(response);
             console.log(response.data);
+            alert(response.data);
         });
     }
 
@@ -180,7 +211,7 @@ class App extends Component {
 
         return (
             <div className="App">
-                <button onClick={this.handleClickJwt}> JWT token test </button>
+                <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
 
                 <Nav
                     onSetManageMode={this.setManageMode}

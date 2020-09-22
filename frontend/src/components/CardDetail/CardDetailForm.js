@@ -58,13 +58,13 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
-
+        //e.preventDefault();
     //TODO e.preventDefault to stop it from refreshing the whole app
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
             back: this.state.cardBack,
-            known: this.state.cardKnown
+            known: this.state.cardKnown,
         }
         if (this.props.card) {
             this.props.onSubmit(submitObject, this.props.card.id) // The update API caller method takes the pk as a second arg
