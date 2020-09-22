@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode'; // TODO maybe you don't need to import it.
 
 import { Nav } from '../Nav/Nav';
 import { Manage } from '../Manage/Manage';
@@ -17,8 +18,6 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     manage or review. Careful though about muddling in view logic with database logic.
     Should prob tie it to the "user".
     */
-
-
 
 /* TODO refactor the JWT handling stuff into a separate utility file to keep this one clean and readable,
     and to keep the auth handling as modular and maintainable as possible. */
@@ -49,6 +48,7 @@ class App extends Component {
 
         this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
+        this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
@@ -105,6 +105,8 @@ class App extends Component {
         accessToken = response.data.access;
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
+        const decodedAccessToken = jwt_decode(localStorage.getItem('access_token'));
+        localStorage.setItem('user_id', decodedAccessToken.user_id); // The API will want it as a number (python int), jwtdecode returns a string
         this.getCards();
     }
 
@@ -183,6 +185,8 @@ class App extends Component {
             None
     */
     createCard(newCard) { //TODO add access token to request header
+        newCard.user = localStorage.getItem('user_id');// TODO temp
+        alert(`newCard will be ${JSON.stringify(newCard)}`);
         const authHeader = {
             headers: {"Authorization": "Bearer " + localStorage.getItem('access_token')}
         }
@@ -222,12 +226,19 @@ class App extends Component {
         console.log(localStorage.getItem('access_token'));
     }
 
+    handleClickJwtDecode(e) {
+        let decoded = jwt_decode(localStorage.getItem('access_token'));
+        console.log(`full decoded access token: ${JSON.stringify(decoded)}`);
+        console.log(`user id for the token is ${decoded.user_id}`);
+    }
+
     render() {
 
         return (
             <div className="App">
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
+                <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
 
                 <Nav
                     onSetManageMode={this.setManageMode}
