@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LoginForm } from './LoginForm';
+import { AuthStatusDisplay } from './AuthStatusDisplay';
 
 export class Login extends React.Component {
 
@@ -69,8 +70,13 @@ export class Login extends React.Component {
             }
         }
 
+        // TODO refactor the dropdown-handler button into separate component file
+
         return(
             <div>
+                <AuthStatusDisplay
+                    user={this.props.user}
+                />
                 <button
                     onClick={this.handleClick}
                     onMouseEnter={this.state.expanded ? null : this.handleMouseEnter}

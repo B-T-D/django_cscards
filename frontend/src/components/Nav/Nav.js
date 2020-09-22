@@ -32,7 +32,9 @@ export class Nav extends React.Component {
                         <button>code</button>
                     </li>
                     <li className="App-nav-item">
-                        <Login />
+                        <Login
+                            user={this.props.user ? this.props.user : null}
+                        />
                     </li>
                 </ul>
             </nav>

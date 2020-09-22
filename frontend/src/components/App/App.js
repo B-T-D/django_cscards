@@ -27,15 +27,11 @@ const apiUrlGetJwtToken = apiUrlRoot + 'token/';
 let accessToken = '';
 let refreshToken = '';
 
-const tempHardCodedCreds = {
-    username: "testuser",
-    password: "testpass123",
-}
-function getJwtToken() {
+function getJwtToken(username, password) {
         axios.post(
             apiUrlGetJwtToken, {
-                username: tempHardCodedCreds.username,
-                password: tempHardCodedCreds.password
+                "username": username,
+                "password": password
                 }
         )
         .then(response => {
@@ -45,8 +41,14 @@ function getJwtToken() {
         .then(alert(`accessToken is now ${accessToken}, with type ${typeof accessToken}`));
     }
 
+function jwtSuccess(response) {
+    alert("jwtSuccess() called");
+    accessToken = response.data.access;
+}
 
-
+function jwtFail() {
+    alert("jwtFail() called");
+}
 
 class App extends Component {
     constructor(props) {
@@ -54,7 +56,8 @@ class App extends Component {
         this.state = {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
-            mode: 'manage'
+            mode: 'manage',
+            user: ''
         };
 
         // Method Binds:
@@ -76,7 +79,7 @@ class App extends Component {
     }
 
     handleClickJwt(event) {
-        getJwtToken();
+        getJwtToken(this.state.user, "testpass123");
         this.getCards();
     }
 
@@ -132,7 +135,7 @@ class App extends Component {
         Returns:
             None
     */
-    createCard(newCard) {
+    createCard(newCard) { //TODO add access token to request header
         axios.post(apiUrlCreateCard, newCard
         ).then(response => {
             console.log("Response from API POST attempt:");
@@ -141,7 +144,7 @@ class App extends Component {
         });
     }
 
-    updateCard(card, pk) {
+    updateCard(card, pk) { //TODO add token
         const url = `${apiUrlStemEditCard}/${pk}/`;
         axios.put(url, card
         ).then(response => {
@@ -151,7 +154,7 @@ class App extends Component {
         })
     }
 
-    deleteCard(pk) {
+    deleteCard(pk) { // TODO add token
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
         axios.delete(url
         ).then() /* Re-render after a card was deleted from the DB */
@@ -166,6 +169,7 @@ class App extends Component {
                 <Nav
                     onSetManageMode={this.setManageMode}
                     onSetReviewMode={this.setReviewMode}
+                    user={this.state.user}
                 />
                 {this.state.mode === 'manage' ?
                     <Manage
