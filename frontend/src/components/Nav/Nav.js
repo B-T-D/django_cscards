@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ReviewModeSelect } from './ReviewModeSelect';
 import { ManageModeSelect } from './ManageModeSelect';
+import { Login } from '../Login/Login';
 
 export class Nav extends React.Component {
 
@@ -31,7 +32,7 @@ export class Nav extends React.Component {
                         <button>code</button>
                     </li>
                     <li className="App-nav-item">
-                        <button>log out</button>
+                        <Login />
                     </li>
                 </ul>
             </nav>

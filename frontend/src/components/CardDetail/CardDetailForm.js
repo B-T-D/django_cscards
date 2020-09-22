@@ -58,6 +58,8 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
+
+    //TODO e.preventDefault to stop it from refreshing the whole app
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
