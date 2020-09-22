@@ -19,6 +19,35 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     */
 
 
+
+/* TODO refactor the JWT handling stuff into a separate utility file to keep this one clean and readable,
+    and to keep the auth handling as modular and maintainable as possible. */
+
+const apiUrlGetJwtToken = apiUrlRoot + 'token/';
+let accessToken = '';
+let refreshToken = '';
+
+const tempHardCodedCreds = {
+    username: "testuser",
+    password: "testpass123",
+}
+function getJwtToken() {
+        axios.post(
+            apiUrlGetJwtToken, {
+                username: tempHardCodedCreds.username,
+                password: tempHardCodedCreds.password
+                }
+        )
+        .then(response => {
+            alert(`response was ${JSON.stringify(response)}`);
+            accessToken = response.data.access;
+        })
+        .then(alert(`accessToken is now ${accessToken}, with type ${typeof accessToken}`));
+    }
+
+
+
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +65,8 @@ class App extends Component {
         this.deleteCard = this.deleteCard.bind(this);
         this.getCards = this.getCards.bind(this);
 
+        this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
+
 //        this.sortCards = this.sortCards.bind(this);
     }
 
@@ -44,11 +75,22 @@ class App extends Component {
 //        this.sortCards();
     }
 
+    handleClickJwt(event) {
+        getJwtToken();
+        this.getCards();
+    }
+
     getCards() {
         axios
-            .get(apiUrlListCards)
-            .then(res => {
-                this.setState({ cards: res.data });
+            .get(apiUrlListCards, {
+                headers: {
+                    "Authorization": "Bearer " + accessToken,
+                }
+
+            })
+            .then(response => {
+                alert(`response to GET card was ${JSON.stringify(response)}`);
+                this.setState({ cards: response.data });
             })
             .catch(err => {
                 console.log(err);
@@ -119,6 +161,8 @@ class App extends Component {
 
         return (
             <div className="App">
+                <button onClick={this.handleClickJwt}> JWT token test </button>
+
                 <Nav
                     onSetManageMode={this.setManageMode}
                     onSetReviewMode={this.setReviewMode}
