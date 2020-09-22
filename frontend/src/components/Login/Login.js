@@ -9,16 +9,44 @@ export class Login extends React.Component {
         this.state = {
             status: 'out',
             expanded: false,
+            mousePresent: false
         }
 
         // Method Binds
         this.handleClick = this.handleClick.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.sleep = this.sleep.bind(this);
     }
 
     handleClick(e) {
         this.setState(
             { expanded: !this.state.expanded }
         )
+    }
+
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    handleMouseEnter(e) {
+        this.setState({
+            mousePresent: true
+        })
+        const waiting = async () => {
+            await this.sleep(750) // wait long enough to have reasonable chance user intended to hover on the button
+        }
+        waiting().then((resolvedValue) =>
+            {if (this.state.mousePresent) {
+                this.setState({expanded: true});
+                }
+            })
+    }
+
+    handleMouseLeave(e) {
+        this.setState({
+            mousePresent: false
+        })
     }
 
     render() {
@@ -45,6 +73,8 @@ export class Login extends React.Component {
             <div>
                 <button
                     onClick={this.handleClick}
+                    onMouseEnter={this.state.expanded ? null : this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseLeave}
                 >
                     <ButtonText />
                 </button>
