@@ -34,6 +34,7 @@ export class Nav extends React.Component {
                     <li className="App-nav-item">
                         <Login
                             user={this.props.user ? this.props.user : null}
+                            onSubmitLogin={this.props.onSubmitLogin}
                         />
                     </li>
                 </ul>
@@ -41,6 +42,5 @@ export class Nav extends React.Component {
         )
 
     }
-
 }
 

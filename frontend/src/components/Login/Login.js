@@ -55,7 +55,9 @@ export class Login extends React.Component {
         const Expanded = () => {
             return(
                 <div>
-                    <LoginForm />
+                    <LoginForm
+                        onSubmitLogin={this.props.onSubmitLogin}
+                    />
                 </div>
             );
         }

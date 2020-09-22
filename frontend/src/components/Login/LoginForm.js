@@ -27,8 +27,10 @@ export class LoginForm extends React.Component {
         });
     }
 
-    handleSubmit(event) {
-        alert("Placeholder--login form submitted!");
+    handleSubmit(e) {
+        e.preventDefault();  // TODO consider whether refreshing the whole app could be desirable / simplest.
+
+        this.props.onSubmitLogin(this.state.userNameInput, this.state.passwordInput)
     }
 
 

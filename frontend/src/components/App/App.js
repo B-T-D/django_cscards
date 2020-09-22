@@ -23,32 +23,11 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
 /* TODO refactor the JWT handling stuff into a separate utility file to keep this one clean and readable,
     and to keep the auth handling as modular and maintainable as possible. */
 
-const apiUrlGetJwtToken = apiUrlRoot + 'token/';
+const apiUrlGetJWToken = apiUrlRoot + 'token/';
 let accessToken = '';
 let refreshToken = '';
 
-function getJwtToken(username, password) {
-        axios.post(
-            apiUrlGetJwtToken, {
-                "username": username,
-                "password": password
-                }
-        )
-        .then(response => {
-            alert(`response was ${JSON.stringify(response)}`);
-            accessToken = response.data.access;
-        })
-        .then(alert(`accessToken is now ${accessToken}, with type ${typeof accessToken}`));
-    }
 
-function jwtSuccess(response) {
-    alert("jwtSuccess() called");
-    accessToken = response.data.access;
-}
-
-function jwtFail() {
-    alert("jwtFail() called");
-}
 
 class App extends Component {
     constructor(props) {
@@ -57,7 +36,7 @@ class App extends Component {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
             mode: 'manage',
-            user: ''
+            user: 'testuser'
         };
 
         // Method Binds:
@@ -70,6 +49,10 @@ class App extends Component {
 
         this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
 
+        this.getJWToken = this.getJWToken.bind(this);
+        this.jwtSuccess = this.jwtSuccess.bind(this);
+        this.submitLogin = this.submitLogin.bind(this);
+
 //        this.sortCards = this.sortCards.bind(this);
     }
 
@@ -78,13 +61,41 @@ class App extends Component {
 //        this.sortCards();
     }
 
-    handleClickJwt(event) {
-        getJwtToken(this.state.user, "testpass123");
+    getJWToken(username, password) {
+        axios.post(apiUrlGetJWToken, {
+            "username": username,
+            "password": password
+        }).then(this.jwtSuccess, this.jwtFail);
+    }
+
+    jwtSuccess(response) {
+        alert("jwtSuccess() called");
+        accessToken = response.data.access;
+        alert(`accessToken is now ${accessToken}`);
+        alert(`jwtSuccess() will now call getCards`);
         this.getCards();
     }
 
+    jwtFail() {
+        alert("jwtFail() called");
+    }
+
+    async submitLogin(username, password) {
+        /* Makes a POST request to the API's JWT endpoint with the provided
+            credentials. */
+        this.getJWToken(username, password);
+        // TODO set state.user to username iff and only iff a valid JWT came back.
+    }
+
+    handleClickJwt(event) {
+        this.getJWToken(this.state.user, "testpass123")
+        .then(this.getCards());
+    }
+
     getCards() {
-        axios
+        alert(`getCards was called, accessToken at the time was ${accessToken}`);
+        if (accessToken) {
+            axios
             .get(apiUrlListCards, {
                 headers: {
                     "Authorization": "Bearer " + accessToken,
@@ -99,6 +110,10 @@ class App extends Component {
                 console.log(err);
                 console.log("caught an error");
             })
+        } else {
+            alert('aborted getCards() for lack of access token');
+        }
+
     }
 
     // TODO quick experiment
@@ -170,6 +185,7 @@ class App extends Component {
                     onSetManageMode={this.setManageMode}
                     onSetReviewMode={this.setReviewMode}
                     user={this.state.user}
+                    onSubmitLogin={this.submitLogin}
                 />
                 {this.state.mode === 'manage' ?
                     <Manage
