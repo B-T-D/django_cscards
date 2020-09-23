@@ -27,6 +27,13 @@ const apiUrlGetJWToken = apiUrlRoot + 'token/';
 let accessToken = localStorage.getItem('access_token');
 let refreshToken = null;
 
+function compareFront(a, b) { // TODO messy quick placing, move this
+    if (a.front.toLowerCase() < b.front.toLowerCase()) {
+        return -1
+    };
+    return 1;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -57,7 +64,7 @@ class App extends Component {
         this.submitLogin = this.submitLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
 
-//        this.sortCards = this.sortCards.bind(this);
+        this.sortCardsFront = this.sortCardsFront.bind(this);
     }
 
     /* TODO create a standalone axios instance to DRY out the code. See
@@ -140,6 +147,12 @@ class App extends Component {
     }
 
     // TODO quick experiment
+
+    sortCardsFront() {
+        this.setState({
+            cards: this.state.cards.sort(compareFront)
+        })
+    }
 
 //    sortCards() {
 //        alert("sortCards was called");
@@ -265,6 +278,7 @@ class App extends Component {
                         onCreateCard={this.createCard}
                         onUpdateCard={this.updateCard}
                         onDeleteCard={this.deleteCard}
+                        onSortFront={this.sortCardsFront}
                     />
                         :
                     <Review

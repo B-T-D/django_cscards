@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CardRow } from './CardRow';
+import { SortButtons } from './SortButtons';
 
 function TotalCards({ numCards }) {
     return(
@@ -55,12 +56,16 @@ export class CardsList extends React.Component {
 
     render() {
 
-        this.props.cards.sort(compareFront); // Todo ugly naming and placement, but does work to alphabetically sort.
+//        this.props.cards.sort(compareFront); // Todo ugly naming and placement, but does work to alphabetically sort.
 
         return(
             <div className="cards-list">
                 <TotalCards numCards={this.props.cards.length} />
                 <FilterButtons types={this.props.types} />
+                <br />
+                <SortButtons
+                    onSortFront={this.props.onSortFront}
+                />
                 <table>
                     <tbody>
                         {this.props.cards.map(card => (

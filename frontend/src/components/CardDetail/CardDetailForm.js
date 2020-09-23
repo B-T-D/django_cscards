@@ -65,6 +65,9 @@ export class CardDetailForm extends React.Component {
             back: this.state.cardBack,
             known: this.state.cardKnown,
             user: localStorage.getItem("user_id")
+            /* TODO when updating a card, this changes its user field to the user who
+                updated it. Wouldn't work if there every actually was more than
+                one user. */
         }
         if (this.props.card) {
             this.props.onSubmit(submitObject, this.props.card.id) // The update API caller method takes the pk as a second arg
