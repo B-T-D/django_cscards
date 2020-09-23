@@ -12,12 +12,12 @@ export class AuthStatusDisplay extends React.Component {
     }
 
     render() {
-        if (!this.props.user) {
+        if (!localStorage.getItem("user_id")) {
             return null;
         }
         return (
             <div>
-                <p>Logged in as {this.props.user}</p>
+                <p>Logged in as {this.props.user} (user_id {localStorage.getItem("user_id")})</p>
                 <button
                     onClick={this.handleClickLogout}
                 >

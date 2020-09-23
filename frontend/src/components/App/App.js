@@ -50,6 +50,7 @@ class App extends Component {
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
         this.handleClickPrintRefreshToken = this.handleClickPrintRefreshToken.bind(this); // TODO temp
         this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
+        this.handleForceGetCards = this.handleForceGetCards.bind(this); // TODO temp
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
@@ -78,7 +79,6 @@ class App extends Component {
     }
 
     jwtSuccess(response) {
-        alert("jwtSuccess() called");
         accessToken = response.data.access;
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
@@ -110,6 +110,7 @@ class App extends Component {
             });
             localStorage.removeItem("access_token");
             localStorage.removeItem("refresh_token");
+            localStorage.removeItem("user_id");
             axiosInstance.defaults.headers["Authorization"] = null;
             console.log(response)
             return response;
@@ -173,29 +174,34 @@ class App extends Component {
             None
     */
     createCard(newCard) { //TODO add access token to request header
-        newCard.user = localStorage.getItem('user_id');// TODO temp
-        alert(`newCard will be ${JSON.stringify(newCard)}`);
         const authHeader = {
             headers: {"Authorization": "Bearer " + localStorage.getItem('access_token')}
         }
-        alert(`${JSON.stringify(authHeader)}`);
         axios.post(apiUrlCreateCard, newCard, authHeader
         ).then(response => {
             console.log("Response from API POST attempt:");
             console.log(response);
             console.log(response.data);
-            alert(response.data);
         });
     }
 
-    updateCard(card, pk) { //TODO add token
+    async updateCard(card, pk) { //TODO add token
         const url = `${apiUrlStemEditCard}/${pk}/`;
-        axios.put(url, card
-        ).then(response => {
-            console.log("Response from API PUT request:");
-            console.log(response);
-            console.log(JSON.stringify(response.data));
-        })
+        try {
+            const response = await axiosInstance.put(url, card)
+            console.log(response.data);
+            return response;
+        }
+        catch(error) {
+            console.log(`error in updateCard request: ${error}`);
+        }
+
+//        axios.put(url, card
+//        ).then(response => {
+//            console.log("Response from API PUT request:");
+//            console.log(response);
+//            console.log(JSON.stringify(response.data));
+//        })
     }
 
     deleteCard(pk) { // TODO add token
@@ -228,6 +234,10 @@ class App extends Component {
         console.log(`user id for the token is ${decoded.user_id}`);
     }
 
+    handleForceGetCards(e) {
+        this.getCards();
+    }
+
     render() {
 
         return (
@@ -237,6 +247,8 @@ class App extends Component {
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
                 <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                 <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
+                <br />
+                <button onClick={this.handleForceGetCards}>Force getCards() </button>
 
 
                 <Nav
