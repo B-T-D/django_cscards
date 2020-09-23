@@ -35,6 +35,7 @@ export class Nav extends React.Component {
                         <Login
                             user={this.props.user ? this.props.user : null}
                             onSubmitLogin={this.props.onSubmitLogin}
+                            onLogout={this.props.onLogout}
                         />
                     </li>
                 </ul>

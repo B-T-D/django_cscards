@@ -78,6 +78,7 @@ export class Login extends React.Component {
             <div>
                 <AuthStatusDisplay
                     user={this.props.user}
+                    onLogout={this.props.onLogout}
                 />
                 <button
                     onClick={this.handleClick}

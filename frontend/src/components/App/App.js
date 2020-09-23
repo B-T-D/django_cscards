@@ -104,7 +104,20 @@ class App extends Component {
     }
 
     async handleLogout() {
-
+        try {
+            const response = await axiosInstance.post("blacklist/", {
+                refresh_token : localStorage.getItem("refresh_token")
+            });
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            axiosInstance.defaults.headers["Authorization"] = null;
+            console.log(response)
+            return response;
+        }
+        catch(error) {
+            console.log(error)
+            console.log("caught error from App handleLogout()")
+        }
     }
 
 
@@ -231,6 +244,7 @@ class App extends Component {
                     onSetReviewMode={this.setReviewMode}
                     user={this.state.user}
                     onSubmitLogin={this.submitLogin}
+                    onLogout={this.handleLogout}
                 />
                 {this.state.mode === 'manage' ?
                     <Manage
