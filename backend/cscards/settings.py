@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
 
     # Local
@@ -132,8 +134,20 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ]
+}
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True, # The sjwt package can handle token rotation, no need to do it on frontend or manually on backend.
+    'BLACKLIST_AFTER_ROTATION': True,
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+
 }
 
 # TODO whitelist whatever the origin is for a heroku dyno running the react

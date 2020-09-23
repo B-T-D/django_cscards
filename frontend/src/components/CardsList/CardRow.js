@@ -37,7 +37,8 @@ export class CardRow extends React.Component {
             );
         }
 
-        const Expanded = () => {return (
+        const Expanded = () => {
+            return (
                 <tr key={this.props.card.id}>
                     <EditButton
                         card={this.props.card}

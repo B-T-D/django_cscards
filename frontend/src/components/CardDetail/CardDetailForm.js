@@ -58,11 +58,16 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
+       //e.preventDefault();
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
             back: this.state.cardBack,
-            known: this.state.cardKnown
+            known: this.state.cardKnown,
+            user: localStorage.getItem("user_id")
+            /* TODO when updating a card, this changes its user field to the user who
+                updated it. Wouldn't work if there every actually was more than
+                one user. */
         }
         if (this.props.card) {
             this.props.onSubmit(submitObject, this.props.card.id) // The update API caller method takes the pk as a second arg
