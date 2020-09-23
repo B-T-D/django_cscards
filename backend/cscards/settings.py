@@ -143,6 +143,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True, # The sjwt package can handle token rotation, no need to do it on frontend or manually on backend.
+    'BLACKLIST_AFTER_ROTATION': True,
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
 
