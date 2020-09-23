@@ -46,13 +46,15 @@ class App extends Component {
         this.getCards = this.getCards.bind(this);
 
         this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
-        this.handleClickJwtRefresh = this.handleClickJwtRefresh(this); // TODO temp
+        this.handleClickJwtRefresh = this.handleClickJwtRefresh.bind(this); // TODO temp
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
+        this.handleClickPrintRefreshToken = this.handleClickPrintRefreshToken.bind(this); // TODO temp
         this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
 
 //        this.sortCards = this.sortCards.bind(this);
     }
@@ -73,31 +75,6 @@ class App extends Component {
             "username": username,
             "password": password
         }).then(this.jwtSuccess, this.jwtFail);
-    }
-
-    useToken() {
-        /* Return a valid access token if one is available without requesting
-            new login. */
-
-        // First see if there's a valid access token in localStorage
-
-
-        // If not, see if there's a valid refresh token in local Storage.
-            // If there is, redeem it for a new access token, then return that access token
-
-        // If no valid token available, return a signal indicating login is needed
-    }
-
-    validateAccessToken() {
-        /* Return true if the access token stored in local storage is a valid
-            one, else False */
-        const currentToken = localStorage.getItem('access_token');
-        axios.get(apiUrlCreateCard, {
-            headers: {"Authorization": "Bearer " + currentToken}
-        })
-        .then(response => alert(`response.status was ${response.status}`))
-                    // TODO have a lightweight ping API endpoint rather than requesting the full cards set
-        return false; // TODO placeholder
     }
 
     jwtSuccess(response) {
@@ -124,6 +101,10 @@ class App extends Component {
             })
         }
         // TODO set state.user to username iff and only iff a valid JWT came back.
+    }
+
+    async handleLogout() {
+
     }
 
 
@@ -213,15 +194,19 @@ class App extends Component {
     // TODO -- temp debug buttons
 
     handleClickJwt(event) {
-        localStorage.setItem('access_token', null);
+        localStorage.setItem('access_token', "garbage");
     }
 
     handleClickJwtRefresh(event) {
-        localStorage.setItem('refresh_token', null);
+        localStorage.setItem('refresh_token', "trash");
     }
 
     handleClickPrintAccessToken(e) {
-        console.log(localStorage.getItem('access_token'));
+        console.log(`access token: ${localStorage.getItem('access_token')}`);
+    }
+
+    handleClickPrintRefreshToken(e) {
+        console.log(`refresh token: ${localStorage.getItem('refresh_token')}`);
     }
 
     handleClickJwtDecode(e) {
@@ -237,6 +222,7 @@ class App extends Component {
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
                 <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
+                <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                 <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
 
 
