@@ -46,6 +46,7 @@ class App extends Component {
         this.getCards = this.getCards.bind(this);
 
         this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
+        this.handleClickJwtRefresh = this.handleClickJwtRefresh(this); // TODO temp
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
         this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
 
@@ -126,22 +127,16 @@ class App extends Component {
     }
 
 
-
     getCards() {
         if (accessToken) {
-            axios
-            .get(apiUrlListCards, {
-                headers: {
-                    "Authorization": "Bearer " + localStorage.getItem('access_token'),
-                }
-
-            })
+            axiosInstance
+            .get(apiUrlListCards)
             .then(response => {
                 this.setState({ cards: response.data });
             })
-            .catch(err => {
-                console.log(err);
+            .catch(error => {
                 console.log("caught an error");
+                console.log(JSON.stringify(error));
             })
         } else {
             console.log('aborted getCards() for lack of access token');
@@ -221,6 +216,10 @@ class App extends Component {
         localStorage.setItem('access_token', null);
     }
 
+    handleClickJwtRefresh(event) {
+        localStorage.setItem('refresh_token', null);
+    }
+
     handleClickPrintAccessToken(e) {
         console.log(localStorage.getItem('access_token'));
     }
@@ -236,8 +235,10 @@ class App extends Component {
         return (
             <div className="App">
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
+                <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
                 <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
+
 
                 <Nav
                     onSetManageMode={this.setManageMode}

@@ -7,7 +7,10 @@ export class AuthStatusDisplay extends React.Component {
             return null;
         }
         return (
-            <p>Logged in as {this.props.user}</p>
+            <div>
+                <p>Logged in as {this.props.user}</p>
+                <button>Log out</button>
+            </div>
         );
     }
 
