@@ -34,6 +34,13 @@ function compareFront(a, b) { // TODO messy quick placing, move this
     return 1;
 }
 
+function compareId(a, b) {
+    if (a.id < b.id) {
+        return -1
+    };
+    return 1;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +72,7 @@ class App extends Component {
         this.handleLogout = this.handleLogout.bind(this);
 
         this.sortCardsFront = this.sortCardsFront.bind(this);
+        this.sortCardsPk = this.sortCardsPk.bind(this);
     }
 
     /* TODO create a standalone axios instance to DRY out the code. See
@@ -151,6 +159,12 @@ class App extends Component {
     sortCardsFront() {
         this.setState({
             cards: this.state.cards.sort(compareFront)
+        })
+    }
+
+    sortCardsPk() {
+        this.setState({
+            cards: this.state.cards.sort(compareId)
         })
     }
 
@@ -279,6 +293,7 @@ class App extends Component {
                         onUpdateCard={this.updateCard}
                         onDeleteCard={this.deleteCard}
                         onSortFront={this.sortCardsFront}
+                        onSortPk={this.sortCardsPk}
                     />
                         :
                     <Review

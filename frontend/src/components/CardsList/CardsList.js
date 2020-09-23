@@ -65,6 +65,7 @@ export class CardsList extends React.Component {
                 <br />
                 <SortButtons
                     onSortFront={this.props.onSortFront}
+                    onSortPk={this.props.onSortPk}
                 />
                 <table>
                     <tbody>
@@ -74,6 +75,7 @@ export class CardsList extends React.Component {
                                 card={card}
                                 onUpdateCard={this.props.onUpdateCard}
                                 onDeleteCard={this.onDeleteRow}
+
                             />
                         ))}
                     </tbody>
