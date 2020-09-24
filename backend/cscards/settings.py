@@ -192,6 +192,7 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
+    'http://http://ajar-party.surge.sh/', # TODO remove when there's a more robust/secure frontend config
 )
 
 SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=False)
