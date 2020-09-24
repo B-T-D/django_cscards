@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') # environ Env() can't seem to h
 #DEBUG = os.environ.get('DEBUG', default=1)
 DEBUG = env.bool("DEBUG", default=False) # TODO this isn't reading in from env package or via the older yaml approach. Syntax is always finicky with this.
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
