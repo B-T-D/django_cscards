@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # backend deployment
-docker-compose.yml
+backend/docker-compose.yml
 
 # misc
 db_backup/
