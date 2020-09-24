@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
+//export const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
+export const apiUrlRoot = 'https://intense-tor-53781.herokuapp.com/api/v1/';
 const apiUrlRefreshToken = apiUrlRoot + 'token/refresh/';
 
 export const axiosInstance = axios.create({
