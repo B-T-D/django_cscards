@@ -107,6 +107,10 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     "default": env.dj_db_url("DATABASE_URL")
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -185,7 +189,6 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
-
 )
 
 SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=False)
@@ -208,7 +211,7 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=False)
 
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# for Heroku
+# # for Heroku
 import dj_database_url
 
 db_from_env = dj_database_url.config(conn_max_age=500)
