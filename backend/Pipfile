@@ -57,7 +57,11 @@ PyJWT = "==1.7.1"
 PyNaCl = "==1.4.0"
 PyYAML = "==5.3.1"
 websocket_client = "==0.57.0"
-pypiwin32 = "*"
+psycopg2-binary = "*"
+environs = {extras = ["django"], version = "*"}
+whitenoise = "*"
+gunicorn = "*"
+dj-database-url = "==0.5.0"
 
 [requires]
 python_version = "3.8"

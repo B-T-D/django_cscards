@@ -128,7 +128,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# backend deployment
+*docker-compose*.yml
+
+
 # misc
 db_backup/
 cards.csv
 silo/
+ddq_venv/
