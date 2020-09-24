@@ -25,12 +25,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
-#SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') # environ Env() can't seem to handle this for some reason
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+#DEBUG = False
+#DEBUG = os.environ.get('DEBUG', default=1)
+DEBUG = env.bool("DEBUG", default=False) # TODO this isn't reading in from env package or via the older yaml approach. Syntax is always finicky with this.
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -177,10 +178,23 @@ CORS_ORIGIN_WHITELIST = (
 
 )
 
-SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
+SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=False)
+    # Confirmed ^ successfully set from the yaml by same experiment methodology.
+    #   Required a re-build to take effect.
+
+#SECURE_HSTS_SECONDS = os.environ.get("DJANGO_SECURE_HSTS_SECONDS")
 SECURE_HSTS_SECONDS = env.int("DJANGO_SECURE_HSTS_SECONDS", default=2592000)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True)
-SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
-SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=True)
-CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # new
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=False) # TODO default to True
+    # Confirmed ^ successfully read in from environment var set in the yaml
+    #   (default set to False here for experiment purposes, then set to true in yaml,
+    #   then value checked with django check --deploy checklist.
+
+SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=False)
+
+SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=False)
+
+CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=False)
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+

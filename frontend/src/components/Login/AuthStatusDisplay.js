@@ -2,6 +2,10 @@ import React from 'react';
 
 export class AuthStatusDisplay extends React.Component {
 
+/* TODO it's switching to logged in as even when the login failed for backend
+    config reasons, 9/23. */
+
+
     constructor(props) {
         super(props);
         this.handleClickLogout = this.handleClickLogout.bind(this);

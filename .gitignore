@@ -129,9 +129,11 @@ dmypy.json
 .pyre/
 
 # backend deployment
-backend/docker-compose.yml
+*docker-compose*.yml
+
 
 # misc
 db_backup/
 cards.csv
 silo/
+ddq_venv/
