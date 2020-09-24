@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') # environ Env() can't seem to handle this for some reason
+SECRET_KEY = env.str("DJANGO_SECRET_KEY")
+#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') # environ Env() can't seem to handle this for some reason
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
@@ -205,10 +206,17 @@ SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=False)
 
 CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=False)
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # for Heroku
 import dj_database_url
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+# TODO demo remove
+print(env.dump())
+
+
+
 
