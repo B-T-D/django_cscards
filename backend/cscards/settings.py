@@ -20,6 +20,7 @@ env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+print(f"****BASE_DIR evaluates to \n\t{BASE_DIR}")
 #BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -150,7 +151,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+print(f"*****STATICFILES_DIRS evaluates to \n\t{STATICFILES_DIRS}")
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
+print(f"*****STATIC_ROOT evaluates to \n\t{STATIC_ROOT}")
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",

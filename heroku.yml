@@ -3,8 +3,8 @@ setup:
   - plan: heroku-postgresql
 build:
   docker:
-    web: backend/Dockerfile
+    web: Dockerfile
 release:
   image: web
 run:
-  web: gunicorn backend/cscards.wsgi
+  web: gunicorn cscards.wsgi
