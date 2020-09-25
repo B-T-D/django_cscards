@@ -2,21 +2,21 @@ from django.test import TestCase
 
 from .models import CustomUser
 
-class TestCustomUserBasicFunctionality(TestCase):
+class TestCustomUserBasicFunctionality(TestCase): # Django.test.TestCase is the parent--not unittest TestCase.
+                                                    # The latter would cause problems with the test needing to interact with DB.
     """Basic tests for CustomUser to confirm not obviously broken."""
 
     def setUp(self):
         self.testpass = "testpass123" # universal test password
-        self.user = CustomUser.objects.create_user(
+
+    def test_pk(self):
+        """Is the first user's pk an integer?"""
+        first_user = CustomUser.objects.create_user(
             username="mockuser1",
             password="testpass123"
         )
-
-    def test_pk(self):
-        """Is the first user's pk ("id") the integer 1?"""
-        hardcoded_expected = 4
-        self.assertEqual(hardcoded_expected, self.user.pk) # TODO hardcoded to 4 for now to make it pass Travis. It ends up being 4 for idiosyncratic reasons.
-        self.assertIsInstance(self.user.pk, int)
+        #print(f"Pk of the first mock user was {first_user.pk}")
+        self.assertIsInstance(first_user.pk, int)
 
     def test_pk_increments(self):
         """Do additional users have the expected pks? I.e. at this writing,
@@ -26,15 +26,18 @@ class TestCustomUserBasicFunctionality(TestCase):
             username="mockuser2",
             password="testpass123"
         )
-        hardcoded_expected = 7
-        self.assertEqual(hardcoded_expected, second_user.pk) # TODO hardcoded expediently for Travis. Better than removing the test entirely.
+        #self.assertEqual(self.initial_pk, second_user.pk + 1)
         self.assertIsInstance(second_user.pk, int)
-        for i in range(hardcoded_expected, hardcoded_expected + 9):
+        for i in range(second_user.pk + 1, second_user.pk + 9):
+            #print(f"i is {i}")
             mock_user = CustomUser.objects.create_user(
                 username=f"mockuser{i}",
                 password=self.testpass
             )
+            #print(f"mock_user pk is {mock_user.pk}")
             self.assertEqual(i, mock_user.pk)
             self.assertIsInstance(mock_user.pk, int)
+
+    # TODO clean up debug prints once confirmed works for Travis environment
 
 # Create your tests here.
