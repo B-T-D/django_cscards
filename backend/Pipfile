@@ -62,6 +62,7 @@ environs = {extras = ["django"], version = "*"}
 whitenoise = "*"
 gunicorn = "*"
 dj-database-url = "==0.5.0"
+pytest = "*"
 
 [requires]
 python_version = "3.8"
