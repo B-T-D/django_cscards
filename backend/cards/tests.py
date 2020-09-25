@@ -1,8 +1,12 @@
 from django.test import TestCase # this is some Django-tailored subclass of unittest.TestCase (?)
 from django.contrib.auth import get_user_model
+
 import random
+from datetime import datetime
 
 import django
+
+
 
 from .models import Card
 
@@ -31,7 +35,21 @@ class CardModelTests(TestCase):
             Card.objects.create(
                 type=1,
                 front="front text",
-                back="back text"
+                back="back text",
             )
+
+    def test_date_added_auto_now_add(self):
+        """Does a new card instance initialize with a date_added value equal to
+        the time of creation?"""
+        start = django.utils.timezone.now()
+        new_card = Card.objects.create(
+            user=self.user,
+            type=1,
+            front="front text",
+            back="back text"
+        )
+        end = django.utils.timezone.now()
+        self.assertTrue(start <= new_card.date_added <= end)
+
 
 
