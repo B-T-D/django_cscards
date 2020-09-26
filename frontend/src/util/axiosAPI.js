@@ -3,11 +3,13 @@ require('dotenv').config();
 
 let host;
 
-if (process.env.NODE_ENV === 'development') { // Node has already set an environment variable for this
-    host = 'http://127.0.0.1:8000/api/v1/';
-} else {
-    host = 'https://intense-tor-53781.herokuapp.com/api/v1/';
-}
+//if (process.env.NODE_ENV === 'development') { // Node has already set an environment variable for this
+//    host = 'http://127.0.0.1:8000/api/v1/';
+//} else {
+//    host = 'https://intense-tor-53781.herokuapp.com/api/v1/';
+//}
+
+host = 'https://intense-tor-53781.herokuapp.com/api/v1/'
 
 export const apiUrlRoot = host;
 

@@ -4,9 +4,9 @@ export class ReviewModeSelect extends React.Component {
 
     render() {
         return(
-            <button onClick={this.props.onSetReviewMode}>
-                CS Flash Cards
-            </button>
+            <a className="nav-link text-white" onClick={this.props.onSetReviewMode}>
+                Review
+            </a>
         );
     }
 }

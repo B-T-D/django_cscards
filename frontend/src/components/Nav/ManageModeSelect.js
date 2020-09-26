@@ -1,17 +1,48 @@
 import React from 'react';
+import { waitingUtil } from '../../util/sleep.js';
 
 export class ManageModeSelect extends React.Component {
 
-    /* Don't need a constructor and super(props) because nothing needs to be
-    bound here because the callback takes no args */
+    constructor(props) {
+        super(props)
 
-    /* Callback func doesn't pass an arg so doesn't need an event handler */
+        this.defaultText = "Manage"
+
+        this.state = {
+            text: this.defaultText
+        }
+
+        // Method Binds
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    }
+
+    // TODO reusable universal tooltip
+
+    handleMouseEnter(e) {
+        this.setState({
+            text: "Create, update, or delete cards"
+        })
+    }
+
+    handleMouseLeave(e) {
+        waitingUtil(100) // Wait just a tiny moment so it doesn't seem so abrupt
+        .then((resolvedValue) => {
+            this.setState({
+                text: this.defaultText
+            })
+        })
+    }
 
     render() {
 
         return (
-            <button onClick={this.props.onSetManageMode}>
-                manage cards
+            <button className="btn btn-outline-light"
+                onClick={this.props.onSetManageMode}
+                onMouseEnter={this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+            >
+                {this.state.text}
             </button>
         );
 

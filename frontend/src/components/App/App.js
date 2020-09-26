@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode'; // TODO maybe you don't need to import it.
 import { Nav } from '../Nav/Nav';
 import { Manage } from '../Manage/Manage';
 import { Review } from '../Review/Review';
+import { Footer } from '../Footer/Footer';
 
 import { apiUrlRoot, axiosInstance } from '../../util/axiosAPI';
 
@@ -274,7 +275,6 @@ class App extends Component {
                 <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                 <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
                 <br />
-                <button onClick={this.handleForceGetCards}>Force getCards() </button>
 
 
                 <Nav
@@ -302,7 +302,13 @@ class App extends Component {
                         onDeleteCard={this.deleteCard}
                      />
                 }
+                <Footer
+                    mode={this.state.mode}
+                />
+
             </div>
+
+
         )
     }
 }

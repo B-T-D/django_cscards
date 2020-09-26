@@ -36,7 +36,6 @@ export class Review extends React.Component {
     render() {
         return(
             <div>
-                <p>Review mode</p>
                 <FlashCard
                     card={this.props.cards[this.state.currentCardIndex]}
                     onPrev={this.prevCard}

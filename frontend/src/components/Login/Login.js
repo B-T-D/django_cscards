@@ -2,6 +2,7 @@ import React from 'react';
 
 import { LoginForm } from './LoginForm';
 import { AuthStatusDisplay } from './AuthStatusDisplay';
+import { waitingUtil } from '../../util/sleep.js';
 
 export class Login extends React.Component {
 
@@ -17,7 +18,7 @@ export class Login extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
-        this.sleep = this.sleep.bind(this);
+        //this.sleep = this.sleep.bind(this);
     }
 
     handleClick(e) {
@@ -26,18 +27,16 @@ export class Login extends React.Component {
         )
     }
 
-    sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     handleMouseEnter(e) {
         this.setState({
             mousePresent: true
         })
-        const waiting = async () => {
-            await this.sleep(750) // wait long enough to have reasonable chance user intended to hover on the button
-        }
-        waiting().then((resolvedValue) =>
+        /* Wait long enough to have reasonable chance user meant to be there.
+            Cf. how long Amazon navbar (chrome, large viewport, Sept. 2020,
+            known to use React), waits for dropdowns. Seems like about half
+            a second. */
+
+        waitingUtil(500).then((resolvedValue) =>
             {if (this.state.mousePresent) {
                 this.setState({expanded: true});
                 }

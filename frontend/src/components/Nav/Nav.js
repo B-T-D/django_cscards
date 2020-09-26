@@ -13,25 +13,19 @@ export class Nav extends React.Component {
     render() {
 
         return(
-            <nav className="App-nav">
-                <ul>
-                    <li className="App-nav-item">
+            <nav className="navbar navbar-expand-md bg-dark text-white">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
                         <ReviewModeSelect
                             onSetReviewMode={this.props.onSetReviewMode}
                         />
                     </li>
-                    <li className="App-nav-item">
+                    <li className="nav-item active">
                         <ManageModeSelect
                             onSetManageMode={this.props.onSetManageMode}
                         />
                     </li>
-                    <li className="App-nav-item">
-                        <button>general</button>
-                    </li>
-                    <li className="App-nav-item">
-                        <button>code</button>
-                    </li>
-                    <li className="App-nav-item">
+                    <li className="nav-item active">
                         <Login
                             user={this.props.user ? this.props.user : null}
                             onSubmitLogin={this.props.onSubmitLogin}
