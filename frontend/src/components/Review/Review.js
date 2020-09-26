@@ -41,6 +41,8 @@ export class Review extends React.Component {
                     card={this.props.cards[this.state.currentCardIndex]}
                     onPrev={this.prevCard}
                     onNext={this.nextCard}
+                    onUpdateCard={this.props.onUpdateCard}
+                    onDeleteCard={this.props.onDeleteCard}
                 />
             </div>
         );

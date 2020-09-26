@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditButton } from './EditButton';
+import { EditButton } from '../EditButton/EditButton';
 import { CardContent } from './CardContent';
 import { CardDetailForm } from '../CardDetail/CardDetailForm';
 import { DeleteButton } from '../CardDetail/DeleteButton';

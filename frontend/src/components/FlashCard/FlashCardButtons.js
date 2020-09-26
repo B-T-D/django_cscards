@@ -16,7 +16,6 @@ export class FlashCardButtons extends React.Component {
                 >
                     Flip
                 </button>
-                <button>I know it</button>
                 <button
                     onClick={this.props.onNext}
                 >

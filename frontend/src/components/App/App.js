@@ -47,7 +47,7 @@ class App extends Component {
         this.state = {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
-            mode: 'manage',
+            mode: 'review',
             user: ''
         };
 
@@ -99,6 +99,10 @@ class App extends Component {
         localStorage.setItem('refresh_token', response.data.refresh);
         const decodedAccessToken = jwt_decode(localStorage.getItem('access_token'));
         localStorage.setItem('user_id', decodedAccessToken.user_id); // The API will want it as a number (python int), jwtdecode returns a string
+        localStorage.setItem('username', decodedAccessToken.username)
+        this.setState({
+            user: localStorage.getItem('username')
+        })
         this.getCards();
     }
 
@@ -110,11 +114,6 @@ class App extends Component {
         /* Makes a POST request to the API's JWT endpoint with the provided
             credentials. */
         await this.getJWToken(username, password);
-        if (accessToken) {
-            this.setState({
-                user: username
-            })
-        }
         // TODO set state.user to username iff and only iff a valid JWT came back.
     }
 
@@ -212,7 +211,7 @@ class App extends Component {
         });
     }
 
-    async updateCard(card, pk) { //TODO add token
+    async updateCard(card, pk) {
         const url = `${apiUrlStemEditCard}/${pk}/`;
         try {
             const response = await axiosInstance.put(url, card)
@@ -231,7 +230,7 @@ class App extends Component {
 //        })
     }
 
-    deleteCard(pk) { // TODO add token
+    deleteCard(pk) { // TODO do through axiosInstance to use token
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
         axios.delete(url
         ).then() /* Re-render after a card was deleted from the DB */
@@ -268,7 +267,7 @@ class App extends Component {
     render() {
 
         return (
-            <div className="App">
+            <div className="container-fluid">
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
                 <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>

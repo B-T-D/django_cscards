@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class EditButton extends React.Component {
 
@@ -31,4 +32,8 @@ export class EditButton extends React.Component {
             </td>
         );
     }
+}
+
+EditButton.propTypes = {
+    onClick: PropTypes.func.isRequired
 }
