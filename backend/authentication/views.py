@@ -1,8 +1,14 @@
+from rest_framework_simplejwt.views import TokenObtainPairView
+
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-# Create your views here.
+from .serializers import TokenObtainPairWithUsernameSerializer
+
+class TokenObtainPairWithUsernameView(TokenObtainPairView):
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = TokenObtainPairWithUsernameSerializer
 
 class LogoutAndBlackListRefreshTokenForUserView(generics.GenericAPIView):
     permission_classes = (permissions.AllowAny,)
