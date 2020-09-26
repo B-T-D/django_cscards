@@ -39,11 +39,13 @@ export class Back extends React.Component {
         }
 
         return (
-            <div>
+            <div className="container-fluid">
                 <EditButton
                     onClick={this.toggleEditMode}
                 />
-                <p>{this.props.card.back}</p>
+                <div className="row">
+                    <p className="col-12">{this.props.card.back}</p>
+                </div>
                 <RightWrongButtons
                     onIncrementRight={this.props.onIncrementRight}
                     onIncrementWrong={this.props.onIncrementWrong}

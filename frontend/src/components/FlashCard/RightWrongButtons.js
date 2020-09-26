@@ -20,9 +20,19 @@ export class RightWrongButtons extends React.Component {
 
     render() {
         return (
-            <div>
-                <button onClick={this.handleClickGotRight}>Right</button>
-                <button onClick={this.handleClickGotWrong}>Wrong</button>
+            <div className="row">
+                <button
+                    className="col-6"
+                    onClick={this.handleClickGotRight}
+                >
+                    Right
+                </button>
+                <button
+                    className="col-6"
+                    onClick={this.handleClickGotWrong}
+                >
+                    Wrong
+                </button>
             </div>
         )
     }
