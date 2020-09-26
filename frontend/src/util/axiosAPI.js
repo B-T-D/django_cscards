@@ -1,7 +1,16 @@
 import axios from 'axios';
+require('dotenv').config();
 
-//export const apiUrlRoot = 'http://127.0.0.1:8000/api/v1/';
-export const apiUrlRoot = 'https://intense-tor-53781.herokuapp.com/api/v1/';
+let host;
+
+if (process.env.NODE_ENV === 'development') { // Node has already set an environment variable for this
+    host = 'http://127.0.0.1:8000/api/v1/';
+} else {
+    host = 'https://intense-tor-53781.herokuapp.com/api/v1/';
+}
+
+export const apiUrlRoot = host;
+
 const apiUrlRefreshToken = apiUrlRoot + 'token/refresh/';
 
 export const axiosInstance = axios.create({

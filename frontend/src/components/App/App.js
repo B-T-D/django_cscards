@@ -47,7 +47,7 @@ class App extends Component {
         this.state = {
             cards: [{}],
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
-            mode: 'manage',
+            mode: 'review',
             user: ''
         };
 
@@ -212,7 +212,7 @@ class App extends Component {
         });
     }
 
-    async updateCard(card, pk) { //TODO add token
+    async updateCard(card, pk) {
         const url = `${apiUrlStemEditCard}/${pk}/`;
         try {
             const response = await axiosInstance.put(url, card)
@@ -231,7 +231,7 @@ class App extends Component {
 //        })
     }
 
-    deleteCard(pk) { // TODO add token
+    deleteCard(pk) { // TODO do through axiosInstance to use token
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
         axios.delete(url
         ).then() /* Re-render after a card was deleted from the DB */
