@@ -12,7 +12,7 @@ class Card(models.Model):
     times_right = models.PositiveSmallIntegerField(default=0)
     times_wrong = models.PositiveSmallIntegerField(default=0)
 
-    last_reviewed = models.DateTimeField(blank=True, null=True)
+    last_reviewed = models.DateTimeField(blank=True, null=True) # TODO won't last_modified already auto update on a change to times right or times wrong?
     last_modified = models.DateTimeField(auto_now=True)
     date_added = models.DateTimeField(auto_now_add=True, blank=True)
 
