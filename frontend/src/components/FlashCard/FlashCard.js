@@ -63,7 +63,7 @@ export class FlashCard extends React.Component {
 
     render() {
         return(
-            <div className="container">
+            <div className="col bg-light h-200">
                 {this.state.flipped ?
                     <Back
                         card={this.props.card}

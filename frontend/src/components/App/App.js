@@ -7,6 +7,8 @@ import { Manage } from '../Manage/Manage';
 import { Review } from '../Review/Review';
 import { Footer } from '../Footer/Footer';
 
+import Container from 'react-bootstrap/Container';
+
 import { apiUrlRoot, axiosInstance } from '../../util/axiosAPI';
 
 import './App.css';
@@ -265,10 +267,16 @@ class App extends Component {
         this.getCards();
     }
 
-    render() {
+    /* TODO redo and rationalize the gridding to use react-bootstrap addin all
+        the way down the tree */
 
+    render() {
+        /* Not sufficient to have App be the whole-thing container-fluid,
+            needs to be the next thing up in index.js or index.html, otherwise
+            there's a gap in the DOM between where App ends and the bottom of
+            the page */
         return (
-            <div className="container-fluid">
+            <Container fluid>
                 <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
                 <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
                 <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
@@ -305,8 +313,7 @@ class App extends Component {
                 <Footer
                     mode={this.state.mode}
                 />
-
-            </div>
+            </Container>
 
 
         )

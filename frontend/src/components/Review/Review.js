@@ -35,7 +35,9 @@ export class Review extends React.Component {
 
     render() {
         return(
-            <div>
+
+            <div className="row flex-fill d-flex justify-content-center">
+                <div id="reserved left filler" className="col-2 bg-dark"/>
                 <FlashCard
                     card={this.props.cards[this.state.currentCardIndex]}
                     onPrev={this.prevCard}
@@ -43,6 +45,7 @@ export class Review extends React.Component {
                     onUpdateCard={this.props.onUpdateCard}
                     onDeleteCard={this.props.onDeleteCard}
                 />
+                <div id="reserved right filler" className="col-2 bg-dark"/>
             </div>
         );
     }

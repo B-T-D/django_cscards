@@ -12,8 +12,8 @@ export class Footer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.parentFooterClassReview = "page-footer fixed-bottom bg-dark";
-        this.parentFooterClassManage = "page-footer bg-dark";
+        this.parentFooterClassReview = "row fixed-bottom bg-dark";
+        this.parentFooterClassManage = "row bg-dark";
 
     }
 
@@ -28,7 +28,7 @@ export class Footer extends React.Component {
     render() {
         return(
             <footer class={this.props.mode === 'review' ? this.parentFooterClassReview : this.parentFooterClassManage}>
-                <div className="container-fluid">
+                <div className="col-12">
                     <div id="row logos" className="row justify-content-center">
                         <div id="col DRF logo" className="col-2 align-self-center">
                             <a href="https://www.django-rest-framework.org/">
