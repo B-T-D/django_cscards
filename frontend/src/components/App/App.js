@@ -89,15 +89,20 @@ class App extends Component {
 //        this.sortCards();
     }
 
-    async getJWToken(username, password) { // Async here is just an easy way to make it return a promise
-        await axiosInstance.post(apiUrlGetJWToken, {
+    getJWToken(username, password) {
+        /** Returns a Promise that resolves to true if credentials parameters
+            successfuly obtained a token pair, else resolves to false. **/
+        let outcome = axiosInstance.post(apiUrlGetJWToken, {
             "username": username,
             "password": password
-        }).then(this.jwtSuccess, this.jwtFail);
+        }).then(this.jwtSuccess)
+        .catch(this.jwtFail);
+        alert(`"outcome" in getJWToken after then-catch block is \n${Promise.resolve(outcome)}`);
+        return outcome;
     }
 
     jwtSuccess(response) {
-        accessToken = response.data.access;
+        alert(`response (from axiosInstance.post, thenned-through to jwtSuccess) was \n${JSON.stringify(response)}`)
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
         const decodedAccessToken = jwt_decode(localStorage.getItem('access_token'));
@@ -107,16 +112,24 @@ class App extends Component {
             user: localStorage.getItem('username')
         })
         this.getCards();
+        return Promise.resolve(true);
     }
 
-    jwtFail() {
+    jwtFail(error) {
         alert("jwtFail() called--bad login request");
+        alert(`error passed to jwtFail was ${JSON.stringify(error)}`)
+        return Promise.reject(false);
     }
 
+    // TODO disused
     async submitLogin(username, password) {
         /* Makes a POST request to the API's JWT endpoint with the provided
             credentials. */
-        await this.getJWToken(username, password);
+        await this.getJWToken(username, password)
+        .then((resolvedValue) => {
+            alert(`resolvedValue from App parent submitLogin: \n${resolvedValue}`)
+            return `returned resolvedValue from App parent submitLogin: \n${resolvedValue}`
+        })
         // TODO set state.user to username iff and only iff a valid JWT came back.
     }
 
@@ -285,12 +298,12 @@ class App extends Component {
                     <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
                 </div>
 
-                <div id="row navbar" className="row">
+                <div id="row wrapper navbar">
                     <Nav
                         onSetManageMode={this.setManageMode}
                         onSetReviewMode={this.setReviewMode}
                         user={this.state.user}
-                        onSubmitLogin={this.submitLogin}
+                        onSubmitLogin={this.getJWToken}
                         onLogout={this.handleLogout}
                     />
                 </div>

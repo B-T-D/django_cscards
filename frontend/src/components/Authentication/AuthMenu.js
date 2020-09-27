@@ -1,24 +1,38 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { LoginForm } from './LoginForm';
-import { AuthStatusDisplay } from './AuthStatusDisplay';
+import { AuthUI } from './AuthUI';
+import { AuthStatus } from './AuthStatus';
 import { waitingUtil } from '../../util/sleep.js';
 
-export class Login extends React.Component {
+export class AuthMenu extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            status: 'out',
             expanded: false,
             mousePresent: false
         }
 
         // Method Binds
+        this.expand = this.expand.bind(this);
+        this.collapse = this.collapse.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         //this.sleep = this.sleep.bind(this);
+    }
+
+    expand() {
+        this.setState({
+            expanded: true,
+        })
+    }
+
+    collapse() {
+        this.setState({
+            expanded: false,
+        })
     }
 
     handleClick(e) {
@@ -51,48 +65,31 @@ export class Login extends React.Component {
 
     render() {
 
-        const Expanded = () => {
-            return(
-                <div>
-                    <LoginForm
-                        onSubmitLogin={this.props.onSubmitLogin}
-                    />
-                </div>
-            );
-        }
-
-        const ButtonText = () => {
-            if (this.state.expanded) {
-                return <p>cancel</p>
-            } else if (this.state.status === 'out') {
-                return <p>log in</p>
-            } else if (this.state.status === 'in') {
-                return <p>log out</p>
-            }
-        }
-
-        // TODO refactor the dropdown-handler button into separate component file
-
         return(
-            <div>
-                <AuthStatusDisplay
-                    user={this.props.user}
-                    onLogout={this.props.onLogout}
+            <div
+                onClick={this.state.expanded ? null : this.expand}
+                onMouseEnter={this.state.expanded ? null : this.handleMouseEnter}
+                onMouseLeave={this.handleMouseLeave}
+            >
+                <AuthStatus
+                    parentDropdownExpanded={this.state.expanded}
+                    collapseParentDropdown={this.collapse}
                 />
-                <button
-                    onClick={this.handleClick}
-                    onMouseEnter={this.state.expanded ? null : this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                >
-                    <ButtonText />
-                </button>
-                {this.state.expanded ?
-                    <Expanded />
+                { this.state.expanded ?
+                    <AuthUI
+                        onSubmitLogin={this.props.onSubmitLogin}
+                        onLogout={this.props.onLogout}
+                        collapseParentDropdown={this.collapseParentDropdown}
+                    />
                     :
                     null
                 }
+
             </div>
         );
     }
-
 }
+
+AuthMenu.propTypes = {
+    user: PropTypes.string.isRequired,
+};
