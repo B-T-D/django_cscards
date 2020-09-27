@@ -16,7 +16,6 @@ export class Nav extends React.Component {
     render() {
 
         return(
-            <div className="row">
                 <nav className="col navbar navbar-expand-md bg-dark text-white">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
@@ -38,7 +37,6 @@ export class Nav extends React.Component {
                         </li>
                     </ul>
                 </nav>
-            </div>
         )
 
     }

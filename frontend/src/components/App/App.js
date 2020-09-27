@@ -277,21 +277,25 @@ class App extends Component {
             the page */
         return (
             <Container fluid>
-                <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
-                <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
-                <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
-                <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
-                <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
-                <br />
+                <div id="row dev toolbar" className="row">
+                    <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
+                    <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
+                    <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
+                    <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
+                    <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
+                </div>
 
+                <div id="row navbar" className="row">
+                    <Nav
+                        onSetManageMode={this.setManageMode}
+                        onSetReviewMode={this.setReviewMode}
+                        user={this.state.user}
+                        onSubmitLogin={this.submitLogin}
+                        onLogout={this.handleLogout}
+                    />
+                </div>
 
-                <Nav
-                    onSetManageMode={this.setManageMode}
-                    onSetReviewMode={this.setReviewMode}
-                    user={this.state.user}
-                    onSubmitLogin={this.submitLogin}
-                    onLogout={this.handleLogout}
-                />
+                <div id="row main content" className="row">
                 {this.state.mode === 'manage' ?
                     <Manage
                         cards={this.state.cards}
@@ -310,12 +314,14 @@ class App extends Component {
                         onDeleteCard={this.deleteCard}
                      />
                 }
-                <Footer
-                    mode={this.state.mode}
-                />
+                </div>
+
+                <div id="row footer" className="row">
+                    <Footer
+                        mode={this.state.mode}
+                    />
+                </div>
             </Container>
-
-
         )
     }
 }
