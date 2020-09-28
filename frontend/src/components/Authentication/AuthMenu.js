@@ -79,7 +79,7 @@ export class AuthMenu extends React.Component {
                     <AuthUI
                         onSubmitLogin={this.props.onSubmitLogin}
                         onLogout={this.props.onLogout}
-                        collapseParentDropdown={this.collapseParentDropdown}
+                        collapseParentDropdown={this.collapse}
                     />
                     :
                     null

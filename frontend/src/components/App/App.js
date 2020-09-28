@@ -27,8 +27,6 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
     and to keep the auth handling as modular and maintainable as possible. */
 
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
-let accessToken = localStorage.getItem('access_token');
-let refreshToken = null;
 
 function compareFront(a, b) { // TODO messy quick placing, move this
     if (a.front.toLowerCase() < b.front.toLowerCase()) {
@@ -48,9 +46,9 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards: [{}],
+            cards: null,
             categories: ["general", "code"], // TODO rename to "categories" throughout. Some in <Manage/> were left as "types" for now.
-            mode: 'review',
+            mode: 'manage',
             user: ''
         };
 
@@ -71,7 +69,6 @@ class App extends Component {
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
-        this.submitLogin = this.submitLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
 
         this.sortCardsFront = this.sortCardsFront.bind(this);
@@ -97,12 +94,10 @@ class App extends Component {
             "password": password
         }).then(this.jwtSuccess)
         .catch(this.jwtFail);
-        alert(`"outcome" in getJWToken after then-catch block is \n${Promise.resolve(outcome)}`);
         return outcome;
     }
 
-    jwtSuccess(response) {
-        alert(`response (from axiosInstance.post, thenned-through to jwtSuccess) was \n${JSON.stringify(response)}`)
+    async jwtSuccess(response) {
         localStorage.setItem('access_token', response.data.access);
         localStorage.setItem('refresh_token', response.data.refresh);
         const decodedAccessToken = jwt_decode(localStorage.getItem('access_token'));
@@ -111,26 +106,12 @@ class App extends Component {
         this.setState({
             user: localStorage.getItem('username')
         })
-        this.getCards();
+        await this.getCards()
         return Promise.resolve(true);
     }
 
     jwtFail(error) {
-        alert("jwtFail() called--bad login request");
-        alert(`error passed to jwtFail was ${JSON.stringify(error)}`)
         return Promise.reject(false);
-    }
-
-    // TODO disused
-    async submitLogin(username, password) {
-        /* Makes a POST request to the API's JWT endpoint with the provided
-            credentials. */
-        await this.getJWToken(username, password)
-        .then((resolvedValue) => {
-            alert(`resolvedValue from App parent submitLogin: \n${resolvedValue}`)
-            return `returned resolvedValue from App parent submitLogin: \n${resolvedValue}`
-        })
-        // TODO set state.user to username iff and only iff a valid JWT came back.
     }
 
     async handleLogout() {
@@ -143,6 +124,9 @@ class App extends Component {
             localStorage.removeItem("user_id");
             axiosInstance.defaults.headers["Authorization"] = null;
             console.log(response)
+            this.setState({
+                cards: null,
+            })
             return response;
         }
         catch(error) {
@@ -151,9 +135,9 @@ class App extends Component {
         }
     }
 
-
     getCards() {
-        if (accessToken) {
+        if (localStorage.getItem("access_token")) {
+            alert(`getCards found the accessToken`)
             axiosInstance
             .get(apiUrlListCards)
             .then(response => {
@@ -309,24 +293,28 @@ class App extends Component {
                 </div>
 
                 <div id="row main content" className="row">
-                {this.state.mode === 'manage' ?
-                    <Manage
-                        cards={this.state.cards}
-                        types={this.state.categories}
-                        onCreateCard={this.createCard}
-                        onUpdateCard={this.updateCard}
-                        onDeleteCard={this.deleteCard}
-                        onSortFront={this.sortCardsFront}
-                        onSortPk={this.sortCardsPk}
-                    />
+                    {this.state.cards ?
+                        this.state.mode === 'manage' ?
+                            <Manage
+                                cards={this.state.cards}
+                                types={this.state.categories}
+                                onCreateCard={this.createCard}
+                                onUpdateCard={this.updateCard}
+                                onDeleteCard={this.deleteCard}
+                                onSortFront={this.sortCardsFront}
+                                onSortPk={this.sortCardsPk}
+                            />
+                            :
+                            <Review
+                                cards={this.state.cards}
+                                categories={this.state.categories}
+                                onUpdateCard={this.updateCard}
+                                onDeleteCard={this.deleteCard}
+                             />
                         :
-                    <Review
-                        cards={this.state.cards}
-                        categories={this.state.categories}
-                        onUpdateCard={this.updateCard}
-                        onDeleteCard={this.deleteCard}
-                     />
-                }
+                        <p className="col">Log in to access cards database</p>
+                    }
+
                 </div>
 
                 <div id="row footer" className="row">

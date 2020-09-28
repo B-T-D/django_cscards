@@ -8,14 +8,16 @@ export class LoginForm extends React.Component {
 
         this.state = {
             userNameInput: '',
-            passwordInput: ''
+            passwordInput: '',
+            failedAttempts: 0,
         }
 
         // Method Binds
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.successfulLogin = this.successfulLogin.bind(this);
+        this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
+        this.handleLoginFail = this.handleLoginFail.bind(this);
 
     }
 
@@ -34,28 +36,19 @@ export class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();  // TODO consider whether refreshing the whole app could be desirable / simplest.
 
-        const executorFunction = (resolve, reject) => {
-            if (this.props.onSubmitLogin(this.state.userNameInput, this.state.passwordInput)) {
-                resolve("I resolved / good login")
-            } else {
-                reject("I rejected / bad login")
-            }
-        }
-
         this.props.onSubmitLogin(this.state.userNameInput, this.state.passwordInput)
-        .then(this.handleLoginSuccess,
-            () => {
-                alert("handleSubmit: loginPromise failureCallback")
-            }
-        )
+        .then(this.handleLoginSuccess, this.handleLoginFail)
     }
 
     handleLoginSuccess(resolvedValue) {
-        alert(`handleSubmit: loginPromise successCallback.\nResolved value:\n${resolvedValue}`);
+        this.props.collapseParentDropdown();
     }
 
     handleLoginFail(rejectionReason) {
-        alert(`handleSubmit: login promise failureCallback. \nrejectionReason:\n${rejectionReason}`);
+        this.setState({
+            failedAttempts: this.state.failedAttempts + 1
+        })
+        console.log(`${this.state.failedAttempts} failed login attempts`);
     }
 
     successfulLogin() {
@@ -85,6 +78,11 @@ export class LoginForm extends React.Component {
                     value={this.state.passwordInput}
                     onChange={this.handleChangePassword}
                 />
+                {this.state.failedAttempts > 0 ?
+                    <p className="text-danger">Invalid login.</p>
+                    :
+                    null
+                }
                 <button type="submit">
                     submit
                 </button>
@@ -98,4 +96,5 @@ export class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
     onSubmitLogin: PropTypes.func.isRequired,
+    collapseParentDropdown: PropTypes.func.isRequired,
 };
