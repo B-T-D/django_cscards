@@ -4,9 +4,9 @@ export class ReviewModeSelect extends React.Component {
 
     render() {
         return(
-            <a className="nav-link text-white" onClick={this.props.onSetReviewMode}>
+            <button className="btn btn-outline-light" onClick={this.props.onSetReviewMode}>
                 Review
-            </a>
+            </button>
         );
     }
 }

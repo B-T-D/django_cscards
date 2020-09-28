@@ -12,7 +12,7 @@ export class Manage extends React.Component {
 
     render() {
         return (
-            <div className="row bg-light">
+            <div className="row flex-fill d-flex">
                 <AddCard
                     types={this.props.types}
                     onCreateCard={this.props.onCreateCard}
