@@ -4,7 +4,6 @@ setup:
 build:
   docker:
     web: backend/Dockerfile
-  docker:
     app: frontend/Dockerfile
 release:
   image: web
