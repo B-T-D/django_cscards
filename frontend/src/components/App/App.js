@@ -69,8 +69,6 @@ class App extends Component {
         this.deleteCard = this.deleteCard.bind(this);
         this.getCards = this.getCards.bind(this);
 
-        this.handleClickJwt = this.handleClickJwt.bind(this); // TODO temp
-        this.handleClickJwtRefresh = this.handleClickJwtRefresh.bind(this); // TODO temp
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
         this.handleClickPrintRefreshToken = this.handleClickPrintRefreshToken.bind(this); // TODO temp
         this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
@@ -132,10 +130,7 @@ class App extends Component {
             const response = await axiosInstance.post("blacklist/", {
                 refresh_token : localStorage.getItem("refresh_token")
             });
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("refresh_token");
-            localStorage.removeItem("user_id");
-            axiosInstance.defaults.headers["Authorization"] = null;
+
             console.log(response)
             this.setState({
                 cards: null,
@@ -146,6 +141,12 @@ class App extends Component {
             console.log(error)
             console.log("caught error from App handleLogout()")
         }
+        // Dump these regardless of what came back from the API. Otherwise can get stuck in limbo.
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("username");
+        axiosInstance.defaults.headers["Authorization"] = null;
     }
 
     //// API Content CRUD Methods
@@ -250,14 +251,6 @@ class App extends Component {
 
     // TODO -- temp debug buttons
 
-    handleClickJwt(event) {
-        localStorage.setItem('access_token', "garbage");
-    }
-
-    handleClickJwtRefresh(event) {
-        localStorage.setItem('refresh_token', "trash");
-    }
-
     handleClickPrintAccessToken(e) {
         console.log(`access token: ${localStorage.getItem('access_token')}`);
     }
@@ -287,8 +280,6 @@ class App extends Component {
         return (
             <Container fluid>
                 <div id="row dev toolbar" className="row">
-                    <button onClick={this.handleClickJwt}> Clear access token from localStorage </button>
-                    <button onClick={this.handleClickJwtRefresh}> Clear refresh token from localStorage </button>
                     <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
                     <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                     <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
