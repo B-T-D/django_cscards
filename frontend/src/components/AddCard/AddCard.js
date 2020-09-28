@@ -47,7 +47,7 @@ export class AddCard extends React.Component {
         const CurrentViewMode = this.state.expanded ? Expanded: Collapsed;
 
         return (
-            <div className="App-nav">
+            <div className="col-11">
                 <CurrentViewMode />
             </div>
         )

@@ -102,13 +102,14 @@ export class CardDetailForm extends React.Component {
                     </select>
                 </label>
                 <h4>Front of card</h4>
-                    <input
-                        type="text"
+                    <textarea
+                        className="form-control"
                         value={this.state.cardFront}
                         onChange={this.handleChangeFront}
                     />
                 <h4>Back of card</h4>
                     <textarea
+                        className="form-control"
                         value={this.state.cardBack}
                         onChange={this.handleChangeBack}
                     />
