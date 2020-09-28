@@ -197,7 +197,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000',
     'http://cdcs3.surge.sh', # TODO remove when there's a more robust/secure frontend config
-    'https://intense-tor-53781.herokuapp.com/',
+    'https://intense-tor-53781.herokuapp.com',
 )
 
 SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=False)
