@@ -7,6 +7,7 @@ build:
     app: frontend/Dockerfile
 release:
   image: web
+  image: app
 run:
   web: gunicorn cscards.wsgi
   # Heroku should default to using the Dockerfile's run command, which is "npm start"
