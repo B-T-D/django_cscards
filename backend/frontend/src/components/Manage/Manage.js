@@ -12,7 +12,8 @@ export class Manage extends React.Component {
 
     render() {
         return (
-            <div className="row flex-fill d-flex">
+            <div className="row align-content-center border border-danger">
+                <div id="wrapper col main manage content">
                 <AddCard
                     types={this.props.types}
                     onCreateCard={this.props.onCreateCard}
@@ -27,6 +28,7 @@ export class Manage extends React.Component {
                     onSortPk={this.props.onSortPk}
                     onSortDateAdded={this.props.onSortDateAdded}
                 />
+                </div>
             </div>
         );
 

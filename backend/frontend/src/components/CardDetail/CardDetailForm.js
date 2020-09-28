@@ -113,13 +113,6 @@ export class CardDetailForm extends React.Component {
                         value={this.state.cardBack}
                         onChange={this.handleChangeBack}
                     />
-                <h4>Known</h4>
-                    <input
-                        type="checkbox"
-                        name="known (name attribute)"
-                        checked={this.state.cardKnown}
-                        onChange={this.handleChangeKnown}
-                    />
                 <br />
                 <button type="submit">
                     Save

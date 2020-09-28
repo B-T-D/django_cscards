@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { waitingUtil } from '../../util/sleep.js';
 import arrowLeftCircle from 'bootstrap-icons/icons/arrow-left-circle.svg';
 
 /** A button for "back" or "cancel" type UI actions, meant to be reusable
@@ -13,24 +13,54 @@ export class MenuBackButton extends React.Component {
 
         // Fixed instance variables
         this.verboseLabel = "Back";
-        this.content = <img src={arrowLeftCircle} />;
-        // TODO choose a svg and import it
+        this.verboseLabelJSX = this.verboseLabel;
+        this.icon = <img src={arrowLeftCircle}/>;
+
+        // State
+        this.state = {
+            content: this.icon,
+        }
 
         // Method Binds
         this.handleClick = this.handleClick.bind(this);
+        this.handleMouseEnter = this.handleMouseEnter.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
     }
 
     handleClick(e) {
         this.props.onClick()
     }
 
+    handleMouseEnter(e) {
+        this.setState({
+            content: this.verboseLabelJSX
+        })
+    }
+
+    handleMouseLeave(e) {
+        waitingUtil(100) // Wait just a tiny moment so it doesn't seem so abrupt
+        .then((resolvedValue) => {
+            this.setState({
+                content: this.icon
+            })
+        })
+    }
+
+
+
     render() {
         return(
-            <button
-                onClick={this.handleClick}
-            >
-                {this.content}
-            </button>
+            <div>
+                <button
+                    className="btn btn-block btn-outline-dark btn-lg"
+                    style={{'font-size': '10px', 'min-height': '35px'}}
+                    onClick={this.handleClick}
+                    onMouseEnter={this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseLeave}
+                >
+                    {this.state.content}
+                </button>
+            </div>
         )
     }
 

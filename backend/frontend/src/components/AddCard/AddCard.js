@@ -23,7 +23,8 @@ export class AddCard extends React.Component {
     render() {
         const Expanded = () => {
         return (
-                <div>
+                <div className="row justify-content-center border">
+                    <div className="col-11">
                     <AddToggleButton
                         expanded={this.state.expanded}
                         onClick={this.toggleExpanded}
@@ -31,23 +32,28 @@ export class AddCard extends React.Component {
                     <CardDetailForm
                         onSubmit={this.props.onCreateCard}
                     />
+                    </div>
                 </div>
             )
         }
 
         const Collapsed = () => {
             return (
-                <AddToggleButton
-                    expanded={this.state.expanded}
-                    onClick={this.toggleExpanded}
-                />
+                <div className="row justify-content-center">
+                    <div className="col-11">
+                        <AddToggleButton
+                            expanded={this.state.expanded}
+                            onClick={this.toggleExpanded}
+                        />
+                    </div>
+                </div>
             )
         }
 
         const CurrentViewMode = this.state.expanded ? Expanded: Collapsed;
 
         return (
-            <div className="col-11">
+            <div id="wrapper col viewmode border border-primary" className="co1-12">
                 <CurrentViewMode />
             </div>
         )
