@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.259d05e6.chunk.css",
+    "main.js": "/static/js/main.83bf1c76.chunk.js",
+    "main.js.map": "/static/js/main.83bf1c76.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b8e26a73.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b8e26a73.js.map",
+    "static/js/2.ee70655d.chunk.js": "/static/js/2.ee70655d.chunk.js",
+    "static/js/2.ee70655d.chunk.js.map": "/static/js/2.ee70655d.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3564534d6b6cab5ce17e683062da63d3.js": "/precache-manifest.3564534d6b6cab5ce17e683062da63d3.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.259d05e6.chunk.css.map": "/static/css/main.259d05e6.chunk.css.map",
+    "static/js/2.ee70655d.chunk.js.LICENSE.txt": "/static/js/2.ee70655d.chunk.js.LICENSE.txt",
+    "static/media/arrow-left-circle.svg": "/static/media/arrow-left-circle.9e2ea93c.svg",
+    "static/media/chevron-double-left.svg": "/static/media/chevron-double-left.ae6178fe.svg",
+    "static/media/chevron-double-right.svg": "/static/media/chevron-double-right.411c44ff.svg",
+    "static/media/drf_logo.png": "/static/media/drf_logo.37921ea7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b8e26a73.js",
+    "static/js/2.ee70655d.chunk.js",
+    "static/css/main.259d05e6.chunk.css",
+    "static/js/main.83bf1c76.chunk.js"
+  ]
+}
