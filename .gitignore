@@ -137,3 +137,4 @@ db_backup/
 cards.csv
 silo/
 ddq_venv/
+*/node_modules
