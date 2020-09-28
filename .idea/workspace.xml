@@ -2,9 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8fbeaa5d-31a1-4b6d-a1ed-d1e86408c282" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddCard/AddCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AddCard/AddCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cards/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cards/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cards/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cscards/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cscards/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/cscards/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/cscards/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/frontend/src/components/AddCard/AddCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/frontend/src/components/AddCard/AddCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/frontend/src/components/CardDetail/CardDetailForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/frontend/src/components/CardDetail/CardDetailForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/frontend/src/components/CardsList/CardContent.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/frontend/src/components/CardsList/CardContent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/InputDemo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddCard/AddButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddCard/AddCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/App/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/App/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthDropdownLabel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthMenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthStatus.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthUI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/LoginForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardDetail/DeleteButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardsList/CardContent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardsList/CardRow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardsList/CardsList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/EditButton/EditButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlashCard/Back.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlashCard/FlashCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlashCard/FlashCardButtons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlashCard/Front.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/FlashCard/RightWrongButtons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer/drf_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer/footer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Footer/react_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Manage/Manage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MenuBackButton/MenuBackButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav/ManageModeSelect.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav/Nav.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav/ReviewModeSelect.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Review/Review.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SortUI/SortButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SortUI/SortUI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/util/axiosAPI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/util/sleep.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
