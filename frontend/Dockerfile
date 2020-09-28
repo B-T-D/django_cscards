@@ -3,7 +3,7 @@
 # see https://mherman.org/blog/dockerizing-a-react-app/
 
 # pull node base image
-FROM node:14.12.0
+FROM node:latest
 
 WORKDIR /app
 
@@ -13,7 +13,6 @@ ENV PATH /app/node_modules.bin:$PATH
 # install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install --silent
 RUN npm install react-scripts@3.4.3
 
 # add app
