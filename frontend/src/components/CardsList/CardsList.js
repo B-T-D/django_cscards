@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CardRow } from './CardRow';
-import { SortButtons } from './SortButtons';
+import { SortUI } from '../SortUI/SortUI';
 
 function TotalCards({ numCards }) {
     return(
@@ -63,9 +63,11 @@ export class CardsList extends React.Component {
                 <TotalCards numCards={this.props.cards.length} />
                 <FilterButtons types={this.props.types} />
                 <br />
-                <SortButtons
+                <SortUI
+                    onReverse={this.props.onReverse}
                     onSortFront={this.props.onSortFront}
                     onSortPk={this.props.onSortPk}
+                    onSortDateAdded={this.props.onSortDateAdded}
                 />
                 <table>
                     <tbody>

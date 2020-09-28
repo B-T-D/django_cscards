@@ -22,8 +22,10 @@ export class Manage extends React.Component {
                     types={this.props.types}
                     onUpdateCard={this.props.onUpdateCard}
                     onDeleteCard={this.props.onDeleteCard}
+                    onReverse={this.props.onReverse}
                     onSortFront={this.props.onSortFront}
                     onSortPk={this.props.onSortPk}
+                    onSortDateAdded={this.props.onSortDateAdded}
                 />
             </div>
         );

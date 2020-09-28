@@ -123,7 +123,10 @@ export class CardDetailForm extends React.Component {
                 <button type="submit">
                     Save
                 </button>
-
+            <div id="read only info">
+                <p>added: {this.props.card["date_added"]}</p>
+                <p>modified: {this.props.card["last_modified"]}</p>
+            </div>
             </form>
             {this.props.card ?
                     <DeleteButton

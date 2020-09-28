@@ -28,6 +28,8 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
 
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
 
+// Sort Utility Functions
+
 function compareFront(a, b) { // TODO messy quick placing, move this
     if (a.front.toLowerCase() < b.front.toLowerCase()) {
         return -1
@@ -37,6 +39,13 @@ function compareFront(a, b) { // TODO messy quick placing, move this
 
 function compareId(a, b) {
     if (a.id < b.id) {
+        return -1
+    };
+    return 1;
+}
+
+function compareDateAdded(a, b) {
+    if (a["date_added"] < b["date_added"]) {
         return -1
     };
     return 1;
@@ -71,8 +80,10 @@ class App extends Component {
         this.jwtSuccess = this.jwtSuccess.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
 
+        this.reverseCards = this.reverseCards.bind(this);
         this.sortCardsFront = this.sortCardsFront.bind(this);
         this.sortCardsPk = this.sortCardsPk.bind(this);
+        this.sortCardsDateAdded = this.sortCardsDateAdded.bind(this);
     }
 
     /* TODO create a standalone axios instance to DRY out the code. See
@@ -85,6 +96,8 @@ class App extends Component {
         this.getCards();
 //        this.sortCards();
     }
+
+    //// API Authentication Methods
 
     getJWToken(username, password) {
         /** Returns a Promise that resolves to true if credentials parameters
@@ -135,9 +148,10 @@ class App extends Component {
         }
     }
 
+    //// API Content CRUD Methods
+
     getCards() {
         if (localStorage.getItem("access_token")) {
-            alert(`getCards found the accessToken`)
             axiosInstance
             .get(apiUrlListCards)
             .then(response => {
@@ -153,62 +167,11 @@ class App extends Component {
 
     }
 
-    // TODO quick experiment
-
-    sortCardsFront() {
-        this.setState({
-            cards: this.state.cards.sort(compareFront)
-        })
-    }
-
-    sortCardsPk() {
-        this.setState({
-            cards: this.state.cards.sort(compareId)
-        })
-    }
-
-//    sortCards() {
-//        alert("sortCards was called");
-//        this.state.cards.sort();
-        /*
-        this.setState( // TODO if this works it'll still be calling render redundantly maybe
-            {cards: this.state.cards.sort((a, b) => (a.front > b.front) ? 1 : -1)}
-        );
-        */
-//    }
-
-
-    setManageMode() {
-        this.setState(
-            {mode: 'manage'}
-        );
-    }
-
-    setReviewMode() {
-        this.setState(
-            {mode: 'review'}
-        );
-    }
-
-    /**postCard(): Makes HTTP POST request to the backend API to add a new
-        card to the database.
-
-        Args:
-            newCard (object): A JS object with all fields expected by the API
-                (i.e. type, front, back, and known--backend assigns the pk).
-        Returns:
-            None
-    */
     createCard(newCard) { //TODO add access token to request header
-        const authHeader = {
-            headers: {"Authorization": "Bearer " + localStorage.getItem('access_token')}
-        }
-        axios.post(apiUrlCreateCard, newCard, authHeader
-        ).then(response => {
-            console.log("Response from API POST attempt:");
-            console.log(response);
-            console.log(response.data);
-        });
+        axiosInstance.post(
+            apiUrlCreateCard,
+            newCard
+        );
     }
 
     async updateCard(card, pk) {
@@ -222,19 +185,68 @@ class App extends Component {
             console.log(`error in updateCard request: ${error}`);
         }
 
-//        axios.put(url, card
-//        ).then(response => {
-//            console.log("Response from API PUT request:");
-//            console.log(response);
-//            console.log(JSON.stringify(response.data));
-//        })
     }
 
     deleteCard(pk) { // TODO do through axiosInstance to use token
+        alert("Frontend deletion temporarily disabled for security.")
+        return
         const url = `${apiUrlStemDeleteCard}/${pk}/`;
         axios.delete(url
         ).then() /* Re-render after a card was deleted from the DB */
     }
+
+    //// Card-Sort Methods
+
+    reverseCards() {
+        /** However cards are currently ordered, reverse them. */
+        this.setState({
+            cards: this.state.cards.reverse(),
+        })
+    }
+
+    sortCardsFront() {
+        this.setState({
+            cards: this.state.cards.sort(compareFront)
+        })
+    }
+
+    sortCardsPk() {
+        this.setState({
+            cards: this.state.cards.sort(compareId)
+        })
+    }
+
+    sortCardsDateAdded() {
+        this.setState({
+            cards: this.state.cards.sort(compareDateAdded)
+        })
+    }
+
+    //    sortCards() {
+//        alert("sortCards was called");
+//        this.state.cards.sort();
+        /*
+        this.setState( // TODO if this works it'll still be calling render redundantly maybe
+            {cards: this.state.cards.sort((a, b) => (a.front > b.front) ? 1 : -1)}
+        );
+        */
+//    }
+
+    // Main Content mode selector methods
+
+    setManageMode() {
+        this.setState(
+            {mode: 'manage'}
+        );
+    }
+
+    setReviewMode() {
+        this.setState(
+            {mode: 'review'}
+        );
+    }
+
+
 
     // TODO -- temp debug buttons
 
@@ -303,6 +315,8 @@ class App extends Component {
                                 onDeleteCard={this.deleteCard}
                                 onSortFront={this.sortCardsFront}
                                 onSortPk={this.sortCardsPk}
+                                onSortDateAdded={this.sortCardsDateAdded}
+                                onReverse={this.reverseCards}
                             />
                             :
                             <Review

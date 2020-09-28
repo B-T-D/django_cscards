@@ -4,8 +4,11 @@
     <list default="true" id="8fbeaa5d-31a1-4b6d-a1ed-d1e86408c282" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/App/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Authentication/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthUI.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Authentication/AuthUI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CardDetail/CardDetailForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardsList/CardsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/CardsList/CardsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/CardsList/SortButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SortUI/SortUI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Manage/Manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Manage/Manage.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +38,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ben\Desktop\django_cscards\frontend\src\components\SortUI" />
       <recent name="C:\Users\Ben\Desktop\django_cscards\frontend\src\components\EditButton" />
       <recent name="C:\Users\Ben\Desktop\django_cscards\frontend\src\components\FlashCard" />
     </key>

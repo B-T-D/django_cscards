@@ -12,13 +12,9 @@ export class AuthUI extends React.Component {
         this.handleClickLogout = this.handleClickLogout.bind(this);
     }
 
-
     handleClickLogout(e) {
         this.props.onLogout();
     }
-
-
-
 
     render() {
         return(
