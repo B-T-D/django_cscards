@@ -14,3 +14,7 @@ export class Front extends React.Component {
         );
     }
 }
+
+Front.propTypes = {
+    content: PropTypes.string.isRequired,
+}

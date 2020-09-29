@@ -2,7 +2,6 @@ import React from 'react';
 import { EditButton } from '../EditButton/EditButton';
 import { CardContent } from './CardContent';
 import { CardDetailForm } from '../CardDetail/CardDetailForm';
-import { DeleteButton } from '../CardDetail/DeleteButton';
 
 export class CardRow extends React.Component {
 
@@ -14,12 +13,19 @@ export class CardRow extends React.Component {
 
         // Method Binds
         this.toggleExpanded = this.toggleExpanded.bind(this);
+        this.collapse = this.collapse.bind(this);
     }
 
     toggleExpanded() {
         this.setState(
             {expanded: (!this.state.expanded)}
         );
+    }
+
+    collapse() {
+        this.setState({
+            expanded: false,
+        })
     }
 
     render() {
@@ -50,6 +56,7 @@ export class CardRow extends React.Component {
                         card={this.props.card}
                         onSubmit={this.props.onUpdateCard}
                         onDeleteCard={this.props.onDeleteCard}
+                        onCloseForm={this.collapse}
                     />
                     </td>
                 </tr>)

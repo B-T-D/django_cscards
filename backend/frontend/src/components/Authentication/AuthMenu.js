@@ -91,5 +91,6 @@ export class AuthMenu extends React.Component {
 }
 
 AuthMenu.propTypes = {
-    user: PropTypes.string.isRequired,
+    onSubmitLogin: PropTypes.func.isRequired,
+    onLogout: PropTypes.func.isRequired,
 };

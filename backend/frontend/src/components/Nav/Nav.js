@@ -9,10 +9,6 @@ import { AuthMenu } from '../Authentication/AuthMenu';
 
 export class Nav extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return(
@@ -38,7 +34,6 @@ export class Nav extends React.Component {
                                     className="col-10"
                                 >
                                     <AuthMenu
-                                        user={this.props.user ? this.props.user : null}
                                         onSubmitLogin={this.props.onSubmitLogin}
                                         onLogout={this.props.onLogout}
                                     />

@@ -54,3 +54,18 @@ export class Back extends React.Component {
         );
     }
 }
+
+Back.propTypes = {
+    card: PropTypes.exact({
+        id: PropTypes.number,
+        type: PropTypes.number,
+        front: PropTypes.string,
+        back: PropTypes.string,
+        known: PropTypes.bool,
+        controlErroneousProperty: PropTypes.bool
+    }).isRequired,
+    onIncrementRight: PropTypes.func.isRequired,
+    onIncrementWrong: PropTypes.func.isRequired,
+    onUpdateCard: PropTypes.func.isRequired,
+    onDeleteCard: PropTypes.func.isRequired,
+}

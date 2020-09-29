@@ -92,7 +92,10 @@ class App extends Component {
 
     componentDidMount() {
         this.getCards();
-//        this.sortCards();
+        /* TODO initially sort cards by date added or modified. Needs async,
+            Promise, and/or setTimeout() stuff. Not so simple as just calling
+            the sort function after this.getCards()--it ends up trying to sort
+            the null cards. */
     }
 
     //// API Authentication Methods
@@ -181,6 +184,7 @@ class App extends Component {
         try {
             const response = await axiosInstance.put(url, card)
             console.log(response.data);
+            this.getCards();
             return response;
         }
         catch(error) {

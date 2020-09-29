@@ -4,16 +4,6 @@ import { AuthDropdownLabel } from './AuthDropdownLabel';
 
 export class AuthStatus extends React.Component {
 
-/* TODO it's switching to logged in as even when the login failed for backend
-    config reasons, 9/23. */
-
-
-    constructor(props) {
-        super(props);
-
-    }
-
-
     render() {
         return (
             <div>

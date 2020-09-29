@@ -44,3 +44,10 @@ export class SortUI extends React.Component {
         )
     }
 }
+
+SortUI.propTypes = {
+    onReverse: PropTypes.func.isRequired,
+    onSortFront: PropTypes.func.isRequired,
+    onSortPk: PropTypes.func.isRequired,
+    onSortDateAdded: PropTypes.func.isRequired,
+}

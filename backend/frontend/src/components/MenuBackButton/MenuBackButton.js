@@ -14,7 +14,7 @@ export class MenuBackButton extends React.Component {
         // Fixed instance variables
         this.verboseLabel = "Back";
         this.verboseLabelJSX = this.verboseLabel;
-        this.icon = <img src={arrowLeftCircle}/>;
+        this.icon = <img src={arrowLeftCircle} alt="arrow left circle back button"/>;
 
         // State
         this.state = {

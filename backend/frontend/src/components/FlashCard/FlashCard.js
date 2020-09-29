@@ -74,7 +74,9 @@ export class FlashCard extends React.Component {
 
                     />
                     :
-                    <Front content={this.props.card.front} />
+                    <Front
+                        content={this.props.card.front}
+                    />
                 }
                 <FlashCardButtons
                     onPrev={this.props.onPrev}
