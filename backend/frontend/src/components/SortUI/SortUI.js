@@ -31,14 +31,19 @@ export class SortUI extends React.Component {
             <div>
                 <p>Sort by:</p>
                 <SortButton
-                    label="alphabetical by front content"
-                    sortCallback={this.props.onSortFront}
-                    reverseCallback={this.props.onReverse}
+                    label="last modified"
+                    sortCallback={this.props.onSortCardsLastModified}
+                    reverseCallback={this.props.onReverseCards}
+                />
+                <SortButton
+                    label="times wrong"
+                    sortCallback={this.props.onSortCardsTimesWrong}
+                    reverseCallback={this.props.onReverseCards}
                 />
                 <SortButton
                     label="date added"
-                    sortCallback={this.props.onSortDateAdded}
-                    reverseCallback={this.props.onReverse}
+                    sortCallback={this.props.onSortCardsDateAdded}
+                    reverseCallback={this.props.onReverseCards}
                 />
             </div>
         )
