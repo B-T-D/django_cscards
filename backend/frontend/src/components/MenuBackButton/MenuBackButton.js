@@ -25,6 +25,21 @@ export class MenuBackButton extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyDown)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyDown)
+    }
+
+    handleKeyDown(e) {
+        if (e.key === "Escape") {
+            this.props.onClick();
+        }
     }
 
     handleClick(e) {

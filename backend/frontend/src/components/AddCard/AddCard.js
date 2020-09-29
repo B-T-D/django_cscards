@@ -12,6 +12,25 @@ export class AddCard extends React.Component {
 
         // Method Binds
         this.toggleExpanded = this.toggleExpanded.bind(this);
+        this.expand = this.expand.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyDown)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyDown)
+    }
+
+    handleKeyDown(e) {
+        // e.preventDefault() not working to suppress Chrome ctrl-n for new window.
+
+        if (e.ctrlKey && e.key === 'a') {
+            e.preventDefault();
+            this.expand();
+        }
     }
 
     toggleExpanded() {
@@ -19,6 +38,14 @@ export class AddCard extends React.Component {
             {expanded: (!this.state.expanded)}
         );
     }
+
+    expand() {
+        this.setState({
+            expanded: true,
+        })
+    }
+
+
 
     render() {
         const Expanded = () => {
@@ -31,6 +58,7 @@ export class AddCard extends React.Component {
                     />
                     <CardDetailForm
                         onSubmit={this.props.onCreateCard}
+                        onCloseForm={this.toggleExpanded}
                     />
                     </div>
                 </div>
@@ -44,6 +72,7 @@ export class AddCard extends React.Component {
                         <AddToggleButton
                             expanded={this.state.expanded}
                             onClick={this.toggleExpanded}
+                            onCtrlN={this.expand}
                         />
                     </div>
                 </div>

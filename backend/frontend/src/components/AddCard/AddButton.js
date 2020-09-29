@@ -5,9 +5,19 @@ import { MenuBackButton } from '../MenuBackButton/MenuBackButton';
 
 export class AddToggleButton extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        // Method Binds
+
+    }
+
+
+
     /* Re: convoluted nesting: It needs a parent element to lock its size.
         Make it "block" so that it grows to parent's full size, then manipulate
         the parent's size. Seems like stuck with this when using bootstrap. */
+
 
     render() {
 
@@ -18,7 +28,7 @@ export class AddToggleButton extends React.Component {
                     <MenuBackButton onClick={this.props.onClick}/>
                     :
                     <button onClick={this.props.onClick}>
-                        "Add a Card"
+                        Add Card
                     </button>
                 }
             </div>

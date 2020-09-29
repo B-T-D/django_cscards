@@ -173,6 +173,7 @@ class App extends Component {
             apiUrlCreateCard,
             newCard
         );
+        this.getCards();
     }
 
     async updateCard(card, pk) {

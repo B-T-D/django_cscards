@@ -6,11 +6,17 @@ export class CardDetailForm extends React.Component {
 
     constructor(props) {
         super(props);
+        this.keybindings = {
+            'thing that t key does': ['t'],
+            'thing that tfu does': ['t', 'f', 'u'],
+        }
         this.state = {
             cardType: 1,
             cardFront: '',
             cardBack: '',
-            cardKnown: false
+            cardKnown: false,
+            prevKey: null,
+            prevPrevKey: null,
         }
 
         // Method Binds
@@ -20,6 +26,8 @@ export class CardDetailForm extends React.Component {
         this.handleChangeKnown = this.handleChangeKnown.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
     componentDidMount() {
@@ -31,6 +39,11 @@ export class CardDetailForm extends React.Component {
                 cardKnown: this.props.card.known
             })
         }
+        document.addEventListener("keydown", this.handleKeyDown)
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyDown)
     }
 
     handleCardTypeChange(e) {
@@ -58,7 +71,7 @@ export class CardDetailForm extends React.Component {
     }
 
     handleSubmit(e) {
-       //e.preventDefault();
+        e.preventDefault();
         let submitObject = {
             type: this.state.cardType,
             front: this.state.cardFront,
@@ -74,6 +87,7 @@ export class CardDetailForm extends React.Component {
         } else {
             this.props.onSubmit(submitObject); // The create API-caller only takes one arg, the contents. Backend will assign a pk.
         }
+        this.props.onCloseForm();
 
     }
 
@@ -89,6 +103,23 @@ export class CardDetailForm extends React.Component {
         so long as using the default <form /> --> "submit" behavior. */
 
     /* TODO save button: use bootstrap "Server" SVG (database symbol thing). */
+
+    handleKeyDown(e) {
+        //alert(`${e.key} key was pressed`);
+
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            //alert('save');
+            this.handleSubmit(e);
+        }
+
+        //this.isShortcut(e.key);
+        this.setState({
+            prevPrevKey: this.state.prevKey,
+            prevKey: e.key,
+            })
+
+    }
 
     render() {
         return(
@@ -134,5 +165,6 @@ export class CardDetailForm extends React.Component {
 CardDetailForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onDeleteCard: PropTypes.func.isRequired,
+    onCloseForm: PropTypes.func.isRequired,
 
 };
