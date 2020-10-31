@@ -48,10 +48,12 @@ class App extends Component {
         this.deleteCard = this.deleteCard.bind(this);
         this.getCards = this.getCards.bind(this);
 
+        /// Debug toolbar buttons:
         this.handleClickPrintAccessToken = this.handleClickPrintAccessToken.bind(this); // TODO temp
         this.handleClickPrintRefreshToken = this.handleClickPrintRefreshToken.bind(this); // TODO temp
         this.handleClickJwtDecode = this.handleClickJwtDecode.bind(this); // TODO temp
         this.handleForceGetCards = this.handleForceGetCards.bind(this); // TODO temp
+        this.handleClickPrintWindowDimensions = this.handleClickPrintWindowDimensions.bind(this);
 
         this.getJWToken = this.getJWToken.bind(this);
         this.jwtSuccess = this.jwtSuccess.bind(this);
@@ -198,8 +200,6 @@ class App extends Component {
         );
     }
 
-
-
     // TODO -- temp debug buttons
 
     handleClickPrintAccessToken(e) {
@@ -214,6 +214,10 @@ class App extends Component {
         let decoded = jwt_decode(localStorage.getItem('access_token'));
         console.log(`full decoded access token: ${JSON.stringify(decoded)}`);
         console.log(`user id for the token is ${decoded.user_id}`);
+    }
+
+    handleClickPrintWindowDimensions(e) {
+        console.log(`window.innerHeight = ${window.innerHeight}\nwindow.innerWidth = ${window.innerWidth}`)
     }
 
     handleForceGetCards(e) {
@@ -235,6 +239,7 @@ class App extends Component {
                         <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
                         <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                         <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
+                        <button onClick={this.handleClickPrintWindowDimensions}> Print window.innerHeight and innerWidth </button>
                     </div>
                     :
                     null

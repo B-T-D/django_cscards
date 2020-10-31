@@ -26,27 +26,45 @@ export class Footer extends React.Component {
         scrolling all the way to the bottom. */
 
     render() {
-        return(
-            <footer class={this.props.mode === 'review' ? this.parentFooterClassReview : this.parentFooterClassManage}>
-                <div className="col-12">
-                    <div id="row logos" className="row justify-content-center">
-                        <div id="col DRF logo" className="col-2 align-self-center">
-                            <a href="https://www.django-rest-framework.org/">
-                            <img src={DRFLogo} alt="Django REST Framework logo" className="bg-light" style={{"border-radius":"7.5%"}}/>
-                            </a>
-                        </div>
-                        <div id="col React logo" className="col-2 align-self-center">
-                            <a href="https://reactjs.org/">
-                                <img src={ReactLogo} alt="ReactJS logo"/>
-                            </a>
-                        </div>
-                    </div>
 
-                    <div id="row build info" className="row text-light justify-content-center">
-                        <p className="col-12 text-center">Site build: {buildTimeStamp}</p>
-                    </div>
+        const FooterLargeScreen = () => {
+            return(
+                <footer class={this.props.mode === 'review' ?
+                    this.parentFooterClassReview
+                    :
+                    this.parentFooterClassManage
+                    }
+                >
+                <div className="col-12">
+                        <div id="row logos" className="row justify-content-center">
+                            <div id="col DRF logo" className="col-2 align-self-center">
+                                <a href="https://www.django-rest-framework.org/">
+                                <img src={DRFLogo} alt="Django REST Framework logo" className="bg-light" style={{"border-radius":"7.5%"}}/>
+                                </a>
+                            </div>
+                            <div id="col React logo" className="col-2 align-self-center">
+                                <a href="https://reactjs.org/">
+                                    <img src={ReactLogo} alt="ReactJS logo"/>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div id="row build info" className="row text-light justify-content-center">
+                            <p className="col-12 text-center">Site build: {buildTimeStamp}</p>
+                        </div>
                 </div>
-            </footer>
+                </footer>
+            )
+        }
+           /* TODO 2020-10-30: Don't render any footer on iphone-sized viewport for now, quick fix */
+        return(
+            <div>
+                {window.innerWidth < 400 && this.props.mode === 'review' ?
+                    null
+                    :
+                    <FooterLargeScreen />
+                }
+            </div>
         )
     }
 }
