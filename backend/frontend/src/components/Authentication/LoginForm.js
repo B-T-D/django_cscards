@@ -27,15 +27,14 @@ export class LoginForm extends React.Component {
         });
     }
 
-    handleChangePassword(event) { // TODO the password input can't show the plaintext characters
+    handleChangePassword(e) {
         this.setState({
-            passwordInput: event.target.value
+            passwordInput: e.target.value,
         });
     }
 
     handleSubmit(e) {
         e.preventDefault();  // TODO consider whether refreshing the whole app could be desirable / simplest.
-
         this.props.onSubmitLogin(this.state.userNameInput, this.state.passwordInput)
         .then(this.handleLoginSuccess, this.handleLoginFail)
     }
@@ -73,7 +72,7 @@ export class LoginForm extends React.Component {
                     onChange={this.handleChangeUserName}
                 />
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     value={this.state.passwordInput}
                     onChange={this.handleChangePassword}
