@@ -4,6 +4,11 @@ import { AuthDropdownLabel } from './AuthDropdownLabel';
 
 export class AuthStatus extends React.Component {
 
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>

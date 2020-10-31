@@ -28,8 +28,6 @@ const apiUrlStemDeleteCard = apiUrlRoot + 'delete'; /* Final characters are inte
 
 const apiUrlGetJWToken = apiUrlRoot + 'token/';
 
-
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -109,13 +107,18 @@ class App extends Component {
     async handleLogout() {
         try {
             const response = await axiosInstance.post("blacklist/", {
-                refresh_token : localStorage.getItem("refresh_token")
+                refresh_token : localStorage.getItem('refresh_token')
             });
 
             console.log(response)
             this.setState({
                 cards: null,
             })
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("username");
+            axiosInstance.defaults.headers["Authorization"] = null;
             return response;
         }
         catch(error) {
@@ -123,11 +126,7 @@ class App extends Component {
             console.log("caught error from App handleLogout()")
         }
         // Dump these regardless of what came back from the API. Otherwise can get stuck in limbo.
-        localStorage.removeItem("access_token");
-        localStorage.removeItem("refresh_token");
-        localStorage.removeItem("user_id");
-        localStorage.removeItem("username");
-        axiosInstance.defaults.headers["Authorization"] = null;
+
     }
 
     //// API Content CRUD Methods
@@ -140,6 +139,8 @@ class App extends Component {
                 this.setState({ cards: response.data });
             })
             .catch(error => {
+                localStorage.removeItem("user_id");
+                localStorage.removeItem("username");
                 console.log("caught an error");
                 console.log(JSON.stringify(error));
             })
