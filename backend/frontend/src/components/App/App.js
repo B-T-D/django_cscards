@@ -230,11 +230,16 @@ class App extends Component {
             the page */
         return (
             <Container fluid>
-                <div id="row dev toolbar" className="row">
-                    <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
-                    <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
-                    <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
-                </div>
+                {window.location.hostname === "localhost" ?
+                    <div id="row dev toolbar" className="row">
+                        <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
+                        <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
+                        <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
+                    </div>
+                    :
+                    null
+                }
+
 
                 <div id="row wrapper navbar">
                     <Nav
