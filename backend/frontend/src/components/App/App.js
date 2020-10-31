@@ -244,6 +244,10 @@ class App extends Component {
             needs to be the next thing up in index.js or index.html, otherwise
             there's a gap in the DOM between where App ends and the bottom of
             the page */
+
+        /* Internal convention--"row wrapper" means a div that holds a thing
+        that renders a bootstrap row" */
+
         return (
             <Container fluid>
                 {window.location.hostname === "localhost" ?
@@ -268,7 +272,7 @@ class App extends Component {
                     />
                 </div>
 
-                <div id="row main content" className="row">
+                <div id="row wrapper main content">
                     {this.state.cards ?
                         this.state.mode === 'manage' ?
                             <Manage
@@ -295,7 +299,7 @@ class App extends Component {
 
                 </div>
 
-                <div id="row footer" className="row">
+                <div id="row wrapper footer">
                     <Footer
                         mode={this.state.mode}
                     />

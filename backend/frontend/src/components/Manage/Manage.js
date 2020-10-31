@@ -12,7 +12,7 @@ export class Manage extends React.Component {
 
     render() {
         return (
-            <div className="row align-content-center border border-danger">
+            <div className="row align-content-center">
                 <div id="wrapper col main manage content">
                 <AddCard
                     types={this.props.types}

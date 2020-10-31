@@ -74,7 +74,7 @@ export class AuthMenu extends React.Component {
         this.setState({
             mousePresent: false
         })
-        waitingUtil(2500).then((resolvedValue) =>
+        waitingUtil(4000).then((resolvedValue) =>
             {if (this.state.expanded && !this.state.cursorInChild) {
                 this.setState({expanded: false});
             }}

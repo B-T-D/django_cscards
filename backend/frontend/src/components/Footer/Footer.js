@@ -29,7 +29,7 @@ export class Footer extends React.Component {
 
         const FooterLargeScreen = () => {
             return(
-                <footer class={this.props.mode === 'review' ?
+                <footer className={this.props.mode === 'review' ?
                     this.parentFooterClassReview
                     :
                     this.parentFooterClassManage
