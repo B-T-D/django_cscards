@@ -27,6 +27,8 @@ export class AuthUI extends React.Component {
                 <LoginForm
                     onSubmitLogin={this.props.onSubmitLogin}
                     collapseParentDropdown={this.props.collapseParentDropdown}
+                    flagCursorInChild={this.props.flagCursorInChild}
+                    unflagCursorInChild={this.props.unflagCursorInChild}
                 />
             }
             </div>

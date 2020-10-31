@@ -124,6 +124,17 @@ class App extends Component {
         catch(error) {
             console.log(error)
             console.log("caught error from App handleLogout()")
+            //TODO DRY these out into a function
+            /* Dump the auth-required data anyway. Otherwise you can get
+            stuck 'logged in' for lack of a valid refresh token. */
+            this.setState({
+                cards: null,
+            })
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("username");
+            axiosInstance.defaults.headers["Authorization"] = null;
         }
         // Dump these regardless of what came back from the API. Otherwise can get stuck in limbo.
 

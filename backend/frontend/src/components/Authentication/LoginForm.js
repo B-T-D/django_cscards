@@ -70,12 +70,16 @@ export class LoginForm extends React.Component {
                     name="user name"
                     value={this.state.userNameInput}
                     onChange={this.handleChangeUserName}
+                    onFocus={(e) => {this.props.flagCursorInChild()}}
+                    onBlur={(e) => {this.props.unflagCursorInChild()}}
                 />
                 <input
                     type="password"
                     name="password"
                     value={this.state.passwordInput}
                     onChange={this.handleChangePassword}
+                    onFocus={(e) => {this.props.flagCursorInChild()}}
+                    onBlur={(e) => {this.props.unflagCursorInChild()}}
                 />
                 {this.state.failedAttempts > 0 ?
                     <p className="text-danger">Invalid login.</p>
@@ -96,4 +100,6 @@ export class LoginForm extends React.Component {
 LoginForm.propTypes = {
     onSubmitLogin: PropTypes.func.isRequired,
     collapseParentDropdown: PropTypes.func.isRequired,
+    flagCursorInChild: PropTypes.func.isRequired,
+    unflagCursorInChild: PropTypes.func.isRequired
 };

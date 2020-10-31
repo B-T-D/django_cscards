@@ -11,15 +11,18 @@ export class AuthMenu extends React.Component {
         super(props);
         this.state = {
             expanded: false,
-            mousePresent: false
+            mousePresent: false,
+            cursorInChild: false
         }
 
         // Method Binds
         this.expand = this.expand.bind(this);
         this.collapse = this.collapse.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.flagCursorInChild = this.flagCursorInChild.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.flagCursorInChild = this.flagCursorInChild.bind(this);
+        this.unflagCursorInChild = this.unflagCursorInChild.bind(this);
         //this.sleep = this.sleep.bind(this);
     }
 
@@ -35,10 +38,20 @@ export class AuthMenu extends React.Component {
         })
     }
 
-    handleClick(e) {
-        this.setState(
-            { expanded: !this.state.expanded }
-        )
+    flagCursorInChild() {
+        /* Callback for use by the login input fields to prevent clicking into
+        them with text cursor being treated as a mouseleave, and thus collapsing
+        the menu prematurely. */
+        this.setState({
+            cursorInChild: true
+        })
+    }
+
+    unflagCursorInChild() {
+        /* Callback that text-input children can use when done with cursor. */
+        this.setState({
+            cursorInChild: false
+        })
     }
 
     handleMouseEnter(e) {
@@ -61,8 +74,8 @@ export class AuthMenu extends React.Component {
         this.setState({
             mousePresent: false
         })
-        waitingUtil(7500).then((resolvedValue) =>
-            {if (this.state.expanded) {
+        waitingUtil(2500).then((resolvedValue) =>
+            {if (this.state.expanded && !this.state.cursorInChild) {
                 this.setState({expanded: false});
             }}
         )
@@ -85,6 +98,8 @@ export class AuthMenu extends React.Component {
                         onSubmitLogin={this.props.onSubmitLogin}
                         onLogout={this.props.onLogout}
                         collapseParentDropdown={this.collapse}
+                        flagCursorInChild={this.flagCursorInChild}
+                        unflagCursorInChild={this.unflagCursorInChild}
                     />
                     :
                     null
