@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import jwt_decode from 'jwt-decode'; // TODO maybe you don't need to import it.
 
 import { Nav } from '../Nav/Nav';
