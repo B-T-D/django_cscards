@@ -8,7 +8,9 @@ import { Footer } from '../Footer/Footer';
 
 import Container from 'react-bootstrap/Container';
 
+
 import { apiUrlRoot, axiosInstance } from '../../util/axiosAPI';
+import { DemoModal } from './DemoModal';
 
 import './App.css';
 
@@ -247,6 +249,7 @@ class App extends Component {
                         <button onClick={this.handleClickPrintRefreshToken}> Print refresh token to console </button>
                         <button onClick={this.handleClickJwtDecode}> Decode JWT and print to console </button>
                         <button onClick={this.handleClickPrintWindowDimensions}> Print window.innerHeight and innerWidth </button>
+                        <DemoModal />
                     </div>
                     :
                     null
