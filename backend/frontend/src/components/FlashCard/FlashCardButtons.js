@@ -5,6 +5,8 @@ import chevronDoubleLeft from 'bootstrap-icons/icons/chevron-double-left.svg';
 import { Icon, InlineIcon } from '@iconify/react';
 import tildeIcon from '@iconify/icons-mdi/tilde';
 
+import { DynamicLabelButton } from '../ReusableButtons/DynamicLabelButton';
+
 export class FlashCardButtons extends React.Component {
 
 /* TODO: On mouse enter/leave toggle explanatory text for the bitwise symbols.
@@ -13,12 +15,12 @@ export class FlashCardButtons extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            contentPrevButton: <img src={chevronDoubleLeft}/>, // Bitwise left-shift operator for prev button
-            contentFlipButton: <Icon icon={tildeIcon}/>, // Bitwise NOT / ones-complement operator to "flip"
-            contentNextButton: <img src={chevronDoubleRight} />, // Bitwise right-shift operator for next button
+        this.classNameString = "btn btn-outline-dark btn-block";
 
-        }
+        this.mainContentPrevButton = <img src={chevronDoubleLeft}/>; // Bitwise left-shift operator symbol for prev button
+        this.mainContentFlipButton = <Icon icon={tildeIcon}/>; // Bitwise NOT / ones-complement operator to "flip"
+        this.mainContentNextButton = <img src={chevronDoubleRight} />; // Bitwise right-shift operator for next button
+
     }
 
     render() {
@@ -26,28 +28,31 @@ export class FlashCardButtons extends React.Component {
         return(
             <div className="row">
                 <div className="col-4">
-                    <button
-                        className="btn btn-outline-dark btn-block"
+                    <DynamicLabelButton
+                        classNameString={this.classNameString}
+                        mainText={this.mainContentPrevButton}
+                        hoverText={"Previous"}
                         onClick={this.props.onPrev}
-                    >
-                        {this.state.contentPrevButton}
-                    </button>
+                        lagLeave={0}
+                    />
                 </div>
                 <div className="col-4">
-                    <button
-                        className="btn btn-outline-dark btn-block"
+                    <DynamicLabelButton
+                        classNameString={this.classNameString}
+                        mainText={this.mainContentFlipButton}
+                        hoverText={"Flip"}
                         onClick={this.props.onFlip}
-                    >
-                        {this.state.contentFlipButton}
-                    </button>
+                        lagLeave={0}
+                    />
                 </div>
                <div className="col-4">
-                    <button
-                        className="btn btn-outline-dark btn-block"
-                        onClick={this.props.onNext}
-                    >
-                        {this.state.contentNextButton}
-                    </button>
+                    <DynamicLabelButton
+                        classNameString={this.classNameString}
+                        mainText={this.mainContentNextButton}
+                        hoverText={"Next"}
+                        onClick={this.props.onPrev}
+                        lagLeave={0}
+                    />
                 </div>
 
             </div>
