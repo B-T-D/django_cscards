@@ -60,12 +60,6 @@ class App extends Component {
 
     }
 
-    /* TODO create a standalone axios instance to DRY out the code. See
-        https://hackernoon.com/110percent-complete-jwt-authentication-with-django-and-react-2020-iejq34ta
-        The instance can handle constructing and otherwise dealing with the
-        JWT headers. */
-
-
     componentDidMount() {
         this.getCards();
         /* TODO initially sort cards by date added or modified. Needs async,
@@ -180,7 +174,6 @@ class App extends Component {
         catch(error) {
             console.log(`error in updateCard request: ${error}`);
         }
-
     }
 
     async deleteCard(pk) { // TODO do through axiosInstance to use token
@@ -212,29 +205,27 @@ class App extends Component {
         );
     }
 
-    // TODO -- temp debug buttons
+    // Debug-mode buttons
 
-    handleClickPrintAccessToken(e) {
+    handleClickPrintAccessToken = (e) => {
         console.log(`access token: ${localStorage.getItem('access_token')}`);
     }
 
-    handleClickPrintRefreshToken(e) {
+    handleClickPrintRefreshToken = (e) => {
         console.log(`refresh token: ${localStorage.getItem('refresh_token')}`);
     }
 
-    handleClickJwtDecode(e) {
+    handleClickJwtDecode = (e) => {
         let decoded = jwt_decode(localStorage.getItem('access_token'));
         console.log(`full decoded access token: ${JSON.stringify(decoded)}`);
         console.log(`user id for the token is ${decoded.user_id}`);
     }
 
-    handleClickPrintWindowDimensions(e) {
+    handleClickPrintWindowDimensions = (e) => {
         console.log(`window.innerHeight = ${window.innerHeight}\nwindow.innerWidth = ${window.innerWidth}`)
     }
 
-    handleForceGetCards(e) {
-        this.getCards();
-    }
+    handleForceGetCards = (e) => {this.getCards();}
 
     /* TODO redo and rationalize the gridding to use react-bootstrap addin all
         the way down the tree */
@@ -246,7 +237,8 @@ class App extends Component {
             the page */
 
         /* Internal convention--"row wrapper" means a div that holds a thing
-        that renders a bootstrap row" */
+            that renders a bootstrap "row", while not being a bootstrap "row"
+            itself. */
 
         return (
             <Container fluid>
@@ -260,7 +252,6 @@ class App extends Component {
                     :
                     null
                 }
-
 
                 <div id="row wrapper navbar">
                     <Nav
