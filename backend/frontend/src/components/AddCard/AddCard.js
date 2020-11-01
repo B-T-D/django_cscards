@@ -7,7 +7,10 @@ import Button from 'react-bootstrap/Button';
 
 import { DynamicLabelButton } from '../ReusableButtons/DynamicLabelButton';
 
-export class AddCardModal extends React.Component {
+
+/* TODO implement the keyboard shortcuts from old addcard, they should be
+        available whenever/wherever the add card button is rendered */
+export class AddCard extends React.Component {
 
     constructor(props) {
         super(props);
@@ -55,6 +58,7 @@ export class AddCardModal extends React.Component {
                 <Modal.Body>
                     <CardDetailForm
                         onSubmit={this.props.onCreateCard}
+                        onCloseForm={() => {console.log("from the arrow func")}}
                     />
                 </Modal.Body>
                 <Modal.Footer>
@@ -73,7 +77,7 @@ export class AddCardModal extends React.Component {
 
 }
 
-export class AddCard extends React.Component {
+export class oldAddCard extends React.Component {
 
     constructor(props) {
         super(props);
