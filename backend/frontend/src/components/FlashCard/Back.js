@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { RightWrongButtons } from './RightWrongButtons';
-import { EditButton } from '../EditButton/EditButton';
+import { EditButton } from '../ReusableButtons/EditButton';
 import { CardDetailForm } from '../CardDetail/CardDetailForm';
 
 // TODO need to use context / effect, the prop drilling is getting tedious e.g. with passing the same props to CardDetailForm

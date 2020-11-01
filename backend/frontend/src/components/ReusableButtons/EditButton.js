@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 export class EditButton extends React.Component {
 
-
-
     render() {
 
         const EditSvg = () => { //Bootstrap "Pencil square" icon
