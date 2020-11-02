@@ -14,12 +14,14 @@ export class Manage extends React.Component {
     render() {
         return (
             <div className="row align-content-center">
+                <div className="col align-self-start">
+                    <CardDetailFormModal
+                        location="manage"
+                        mode="create"
+                        onSubmit={this.props.onCreateCard}
+                    />
+                </div>
                 <div id="wrapper col main manage content">
-                <CardDetailFormModal
-                    location="manage"
-                    mode="create"
-                    onSubmit={this.props.onCreateCard}
-                />
                 <CardsList
                     cards={this.props.cards}
                     types={this.props.types}

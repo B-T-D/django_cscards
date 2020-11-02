@@ -190,12 +190,14 @@ export class CardDetailFormModal extends React.Component {
                             <h4>Front of card</h4>
                                 <textarea
                                     className="form-control"
+                                    rows="4"
                                     value={this.state.cardFront}
                                     onChange={this.handleChangeFront}
                                 />
                             <h4>Back of card</h4>
                                 <textarea
                                     className="form-control"
+                                    rows="10"
                                     value={this.state.cardBack}
                                     onChange={this.handleChangeBack}
                                 />

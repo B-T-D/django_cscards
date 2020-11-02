@@ -45,21 +45,28 @@ export class CardRow extends React.Component {
 
         const Expanded = () => {
             return (
-                <tr key={this.props.card.id}>
-                    <td>
-                    <CardDetailFormModal
-                        location="manage"
-                        mode="update"
-                        onSubmit={this.props.onUpdateCard}
-                        onDeleteCard={this.props.onDeleteCard}
-                        card={this.props.card}
-                    />
+                <tr
+                    key={this.props.card.id}
+                    className="row border"
+                >
+                    <td
+                        className="col-1 border"
+                    >
+                        <CardDetailFormModal
+                            location="manage"
+                            mode="update"
+                            onSubmit={this.props.onUpdateCard}
+                            onDeleteCard={this.props.onDeleteCard}
+                            card={this.props.card}
+                        />
                     </td>
-                    <td>
-                    <h3>
+                    <td
+                        className="col"
+                    >
+                    <h3 className="row">
                         {this.props.card.front}
                     </h3>
-                    <p>
+                    <p className="row">
                         {this.props.card.back}
                     </p>
                     </td>

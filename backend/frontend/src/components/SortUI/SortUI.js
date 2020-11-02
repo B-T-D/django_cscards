@@ -28,7 +28,7 @@ export class SortUI extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="row border border-dark">
                 <p>Sort by:</p>
                 <SortButton
                     label="last modified"

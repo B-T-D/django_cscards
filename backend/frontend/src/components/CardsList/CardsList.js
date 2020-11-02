@@ -168,7 +168,9 @@ export class CardsList extends React.Component {
         this.conformSortOrder();
 
         return(
-            <div className="cards-list">
+            <div
+                className="col-12"
+            >
                 <TotalCards numCards={this.state.cardsList.length} />
                 <br />
                 <SortUI

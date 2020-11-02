@@ -265,7 +265,10 @@ class App extends Component {
                     />
                 </div>
 
-                <div id="row wrapper main content">
+                <div
+                    id="row wrapper main content"
+                    style={{"white-space": "pre-wrap"}}
+                >
                     {this.state.cards ?
                         this.state.mode === 'manage' ?
                             <Manage
@@ -287,7 +290,7 @@ class App extends Component {
                                 onDeleteCard={this.deleteCard}
                              />
                         :
-                        <p className="col">Log in to access cards database</p>
+                        <p className="col">Log in to access cards database [replace with login modal]</p>
                     }
 
                 </div>
