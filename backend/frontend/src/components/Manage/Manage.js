@@ -15,12 +15,6 @@ export class Manage extends React.Component {
         return (
             <div className="row align-content-center">
                 <div id="wrapper col main manage content">
-                <AddCard
-                    types={this.props.types}
-                    onSubmit={this.props.onCreateCard}
-                    onUpdateCard={this.props.onUpdateCard}
-                    onDeleteCard={this.props.onDeleteCard}
-                />
                 <CardDetailFormModal
                     location="manage"
                     mode="create"

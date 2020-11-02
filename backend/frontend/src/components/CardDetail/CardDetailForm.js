@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DeleteButton } from './DeleteButton';
+import { EditButton } from '../ReusableButtons/EditButton';
 
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -46,12 +47,9 @@ export class CardDetailFormModal extends React.Component {
                 cardKnown: this.props.card.known
             })
         }
-        document.addEventListener("keydown", this.handleKeyDown)
+
     }
 
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleKeyDown)
-    }
 
     // Modal methods
 
@@ -59,12 +57,14 @@ export class CardDetailFormModal extends React.Component {
         this.setState(
             {show: true}
         )
+        document.addEventListener("keydown", this.handleKeyDown)
     }
 
     handleClose() {
         this.setState(
             {show: false}
         )
+        document.removeEventListener("keydown", this.handleKeyDown)
     }
 
     // Form methods
@@ -140,14 +140,23 @@ export class CardDetailFormModal extends React.Component {
     render() {
 
         const OpenerButton = () => {
-            return(
-                <button
-                    className={"btn btn-outline-dark"}
-                    onClick={this.handleShow}
-                >
-                    modal opener button placeholder
-                </button>
-            )
+            if (this.mode === 'create') {
+                return(
+                    <button
+                        className={"btn btn-outline-dark"}
+                        onClick={this.handleShow}
+                    >
+                        +
+                    </button>
+                )
+            } else if (this.mode === 'update') {
+                return(
+                    <EditButton
+                        onClick={this.handleShow}
+                    />
+                )
+
+            }
         }
         return(
             <div>
@@ -203,6 +212,11 @@ export class CardDetailFormModal extends React.Component {
     }
 
 }
+
+
+
+
+
 
 export class CardDetailForm extends React.Component {
 

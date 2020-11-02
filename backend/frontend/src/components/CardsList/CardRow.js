@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditButton } from '../ReusableButtons/EditButton';
 import { CardContent } from './CardContent';
-import { CardDetailForm } from '../CardDetail/CardDetailForm';
+import { CardDetailFormModal } from '../CardDetail/CardDetailForm';
 
 export class CardRow extends React.Component {
 
@@ -46,23 +46,27 @@ export class CardRow extends React.Component {
         const Expanded = () => {
             return (
                 <tr key={this.props.card.id}>
-                    <EditButton
-                        card={this.props.card}
-                        expanded={this.state.expanded}
-                        onClick={this.toggleExpanded}
-                    />
                     <td>
-                    <CardDetailForm
-                        card={this.props.card}
+                    <CardDetailFormModal
+                        location="manage"
+                        mode="update"
                         onSubmit={this.props.onUpdateCard}
                         onDeleteCard={this.props.onDeleteCard}
-                        onCloseForm={this.collapse}
+                        card={this.props.card}
                     />
+                    </td>
+                    <td>
+                    <h3>
+                        {this.props.card.front}
+                    </h3>
+                    <p>
+                        {this.props.card.back}
+                    </p>
                     </td>
                 </tr>)
         }
 
-        const CurrentViewMode = this.state.expanded ? Expanded : Collapsed;
+        const CurrentViewMode = Expanded;
 
         return (
             <CurrentViewMode card={this.props.card} />
