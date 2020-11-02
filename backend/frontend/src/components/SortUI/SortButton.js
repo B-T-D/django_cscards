@@ -45,7 +45,7 @@ export class SortButton extends React.Component {
     render() {
         return(
             <button
-                className="btn"
+                className="btn text-light"
                 onClick={this.handleClick}
             >
                 {this.displayContent}

@@ -13,7 +13,7 @@ export class Nav extends React.Component {
 
         return(
                     <ul
-                        className="row nav bg-dark text-white align-items-center"
+                        className="row nav text-white align-items-center border border-light"
                         style={{"padding":"5px"}}
                     >
                         <li className="col-4 nav-item active">

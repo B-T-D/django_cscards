@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { FlashCard } from '../FlashCard/FlashCard';
 
+import ladopoulos_1 from '../App/ladopoulos_1.jpg';
+
 export class Review extends React.Component {
 
     constructor(props) {
@@ -37,8 +39,8 @@ export class Review extends React.Component {
         return(
 
             <div
-                className="row justify-content-center"
-                style={{"position": "absolute", "top": "15%", "width": "100%", "height": "65%"}}
+                className="row justify-content-center text-light"
+                style={{"position": "absolute", "top": "15%", "width": "100%", "height": "65%", backgroundImage:`url(${ladopoulos_1})`}}
             >
                 <FlashCard
                     card={this.props.cards[this.state.currentCardIndex]}

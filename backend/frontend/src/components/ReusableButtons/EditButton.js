@@ -16,7 +16,7 @@ export class EditButton extends React.Component {
 
         return(
             <button
-                className="btn btn-outline-dark"
+                className="btn btn-outline-light"
                 onClick={this.props.onClick}
             >
                 {this.props.expanded ?

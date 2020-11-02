@@ -15,7 +15,7 @@ export class FlashCardButtons extends React.Component {
     constructor(props) {
         super(props);
 
-        this.classNameString = "btn btn-outline-dark btn-block";
+        this.classNameString = "btn btn-light btn-block border border-dark";
 
         this.mainContentPrevButton = <img src={chevronDoubleLeft}/>; // Bitwise left-shift operator symbol for prev button
         this.mainContentFlipButton = <Icon icon={tildeIcon}/>; // Bitwise NOT / ones-complement operator to "flip"

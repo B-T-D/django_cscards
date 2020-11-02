@@ -13,6 +13,7 @@ import { apiUrlRoot, axiosInstance } from '../../util/axiosAPI';
 import { DemoModal } from './DemoModal';
 
 import './App.css';
+import graph_2 from './graph_2.png';
 
 const apiUrlCreateCard = apiUrlRoot + 'create/';
 const apiUrlListCards = apiUrlRoot + 'list/';
@@ -242,7 +243,9 @@ class App extends Component {
             itself. */
 
         return (
-            <Container fluid>
+            <Container fluid
+                style={{ backgroundImage: `url(${graph_2})`}}
+            >
                 {window.location.hostname === "localhost" ?
                     <div id="row dev toolbar" className="row">
                         <button onClick={this.handleClickPrintAccessToken}> Print access token to console </button>
@@ -255,7 +258,9 @@ class App extends Component {
                     null
                 }
 
-                <div id="row wrapper navbar">
+                <div
+                    id="row wrapper navbar"
+                >
                     <Nav
                         onSetManageMode={this.setManageMode}
                         onSetReviewMode={this.setReviewMode}

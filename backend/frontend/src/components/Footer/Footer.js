@@ -6,14 +6,15 @@ import './footer.css';
 import DRFLogo from './drf_logo.png';
 import ReactLogo from './react_logo.png';
 
+
 const buildTimeStamp = preval`module.exports = new Date().toLocaleString();`
 
 export class Footer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.parentFooterClassReview = "row fixed-bottom bg-dark";
-        this.parentFooterClassManage = "row bg-dark";
+        this.parentFooterClassReview = "row fixed-bottom";
+        this.parentFooterClassManage = "row";
 
     }
 
@@ -29,11 +30,12 @@ export class Footer extends React.Component {
 
         const FooterLargeScreen = () => {
             return(
-                <footer className={this.props.mode === 'review' ?
-                    this.parentFooterClassReview
-                    :
-                    this.parentFooterClassManage
-                    }
+                <footer
+                    className={this.props.mode === 'review' ?
+                        this.parentFooterClassReview
+                        :
+                        this.parentFooterClassManage
+                        }
                 >
                 <div className="col-12">
                         <div id="row logos" className="row justify-content-center">

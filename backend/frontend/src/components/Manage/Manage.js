@@ -14,7 +14,7 @@ export class Manage extends React.Component {
     render() {
         return (
             <div
-                className="row align-content-center"
+                className="row align-content-center text-light"
                 style={{"padding":"5px"}}
             >
                 <div className="col align-self-start">
