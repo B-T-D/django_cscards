@@ -25,7 +25,7 @@ export const DeleteButton = (props) => {
     return (
         <form>
             <button
-                type="submit"
+                className={"btn btn-outline-dark"}
                 onClick={props.onClick}
                 onMouseOver={onMouseOver}
             >

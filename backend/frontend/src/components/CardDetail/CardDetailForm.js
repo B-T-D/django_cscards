@@ -158,6 +158,7 @@ export class CardDetailFormModal extends React.Component {
 
             }
         }
+
         return(
             <div>
                 <OpenerButton />
@@ -172,7 +173,11 @@ export class CardDetailFormModal extends React.Component {
                     <form onSubmit={this.handleSubmit}>
 
                         <Modal.Header closeButton>
-                            TODO, new or edit depending on context of the form instance
+                            {this.mode === 'create' ?
+                                "New card"
+                                :
+                                "Edit card"
+                            }
                         </Modal.Header>
                         <Modal.Body>
                             <label>
@@ -203,9 +208,18 @@ export class CardDetailFormModal extends React.Component {
                                 onClick={this.handleSubmit}
                             >
                                 Save, modal version
+
                             </button>
+
+
                         </Modal.Footer>
                     </form>
+                    {this.mode === 'update' ?
+                                <DeleteButton onClick={this.handleDelete}/>
+                                :
+                                null
+
+                            }
                 </Modal>
             </div>
         )

@@ -33,7 +33,6 @@ export class Manage extends React.Component {
                 </div>
             </div>
         );
-
     }
 }
 
