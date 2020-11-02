@@ -49,6 +49,7 @@ export class DynamicLabelButton extends React.Component {
                 onClick={this.handleClick}
                 onMouseEnter={this.handleMouseEnter}
                 onMouseLeave={this.handleMouseLeave}
+                style={{"height": "100%"}}
             >
                 {this.state.text}
             </button>

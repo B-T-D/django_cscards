@@ -64,7 +64,11 @@ export class FlashCard extends React.Component {
 
     render() {
         return(
-            <div className="col-10 bg-light border border-danger">
+            <div
+                className="col-10 bg-light"
+
+            >
+                <div className="row align-items-end">
 
                 {this.state.flipped ?
 
@@ -77,20 +81,18 @@ export class FlashCard extends React.Component {
 
                     />
                     :
-                    <div className="row border border-success">
                     <Front
                         content={this.props.card.front}
                     />
-                    </div>
+
 
                 }
+                </div>
                 {this.state.flipped ?
-                    <div className="row">
-                         <RightWrongButtons
-                            onIncrementRight={this.props.onIncrementRight}
-                            onIncrementWrong={this.props.onIncrementWrong}
-                        />
-                    </div>
+                     <RightWrongButtons
+                        onIncrementRight={this.props.onIncrementRight}
+                        onIncrementWrong={this.props.onIncrementWrong}
+                    />
                     :
                     null
                 }

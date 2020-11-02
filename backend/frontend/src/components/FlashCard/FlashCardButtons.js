@@ -26,8 +26,12 @@ export class FlashCardButtons extends React.Component {
     render() {
 
         return(
-            <div className="row border border-primary">
-                <div className="col-4">
+            <div className="row"
+                style={{"position": "absolute", "bottom": "0", "width": "100%"}}
+            >
+                <div
+                    className="col-4"
+                >
                     <DynamicLabelButton
                         classNameString={this.classNameString}
                         mainText={this.mainContentPrevButton}

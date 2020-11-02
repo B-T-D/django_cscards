@@ -59,9 +59,12 @@ export class RightWrongButtons extends React.Component {
 
     render() {
         return (
-            <div className="col-12">
+            <div
+                className="row justify-content-around"
+                style={{"position": "absolute","bottom": "10%", "width": "100%"}}
+            >
                 <button
-                    className="btn btn-outline-dark bg-secondary text-white col-6"
+                    className="btn btn-outline-dark bg-secondary text-white col-5"
                     onClick={this.handleClickGotWrong}
                     onMouseOver={this.handleMouseOverGotWrong}
                     onMouseLeave={this.handleResetGotWrongText}
@@ -69,7 +72,7 @@ export class RightWrongButtons extends React.Component {
                     {this.state.textGotWrong}
                 </button>
                 <button
-                    className="btn btn-outline-dark bg-warning col-6"
+                    className="btn btn-outline-dark bg-warning col-5"
                     onClick={this.handleClickGotRight}
                     onMouseOver={this.handleMouseOverGotRight}
                     onMouseLeave={this.handleResetGotRightText}

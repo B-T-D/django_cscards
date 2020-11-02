@@ -37,7 +37,8 @@ export class Review extends React.Component {
         return(
 
             <div
-                className="row flex-fill d-flex justify-content-center"
+                className="row justify-content-center"
+                style={{"position": "absolute", "top": "15%", "width": "100%", "height": "65%"}}
             >
                 <FlashCard
                     card={this.props.cards[this.state.currentCardIndex]}

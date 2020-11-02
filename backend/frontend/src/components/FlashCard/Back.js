@@ -40,8 +40,7 @@ export class Back extends React.Component {
         }
 
         return (
-            <div className="row border border-warning align-items-end">
-                <div className="col">
+            <div className="col">
                     <div className="row">
                         <CardDetailFormModal
                             location="review"
@@ -54,8 +53,8 @@ export class Back extends React.Component {
                     <div className="row">
                         <p className="col-12">{this.props.card.back}</p>
                     </div>
-                </div>
             </div>
+
         );
     }
 }
