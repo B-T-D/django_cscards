@@ -12,8 +12,10 @@ export class Nav extends React.Component {
     render() {
 
         return(
-                <div>
-                    <ul className="row nav bg-dark text-white align-items-center">
+                    <ul
+                        className="row nav bg-dark text-white align-items-center"
+                        style={{"padding":"5px"}}
+                    >
                         <li className="col-4 nav-item active">
                             <ReviewModeSelect
                                 onSetReviewMode={this.props.onSetReviewMode}
@@ -41,7 +43,7 @@ export class Nav extends React.Component {
                             </div>
                         </li>
                     </ul>
-                </div>
+
         )
 
     }
