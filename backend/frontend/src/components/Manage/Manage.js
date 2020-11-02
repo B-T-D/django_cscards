@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CardsList } from '../CardsList/CardsList';
 import { AddCard } from '../AddCard/AddCard';
+import { CardDetailFormModal } from '../CardDetail/CardDetailForm'
 
 /* TODO careful about "prop drilling". Not a super huge app but still might be
     more maintainable to use context some places instead of many-layered
@@ -16,7 +17,14 @@ export class Manage extends React.Component {
                 <div id="wrapper col main manage content">
                 <AddCard
                     types={this.props.types}
-                    onCreateCard={this.props.onCreateCard}
+                    onSubmit={this.props.onCreateCard}
+                    onUpdateCard={this.props.onUpdateCard}
+                    onDeleteCard={this.props.onDeleteCard}
+                />
+                <CardDetailFormModal
+                    location="manage"
+                    mode="create"
+                    onSubmit={this.props.onCreateCard}
                 />
                 <CardsList
                     cards={this.props.cards}
