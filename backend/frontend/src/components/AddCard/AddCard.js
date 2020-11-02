@@ -77,6 +77,7 @@ export class AddCard extends React.Component {
 
 }
 
+/* Todo the below is unused, only left for reference temporarily during switchover to modal */
 export class oldAddCard extends React.Component {
 
     constructor(props) {
