@@ -13,7 +13,7 @@ export class Nav extends React.Component {
 
         return(
                 <div>
-                    <ul className="row nav bg-dark text-white">
+                    <ul className="row nav bg-dark text-white align-items-center">
                         <li className="col-4 nav-item active">
                             <ReviewModeSelect
                                 onSetReviewMode={this.props.onSetReviewMode}
