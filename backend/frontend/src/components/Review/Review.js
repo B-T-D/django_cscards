@@ -36,16 +36,16 @@ export class Review extends React.Component {
     render() {
         return(
 
-            <div className="row flex-fill d-flex justify-content-center">
-                <div id="reserved left filler" className="col-2 bg-light"/>
-                    <FlashCard
-                        card={this.props.cards[this.state.currentCardIndex]}
-                        onPrev={this.prevCard}
-                        onNext={this.nextCard}
-                        onUpdateCard={this.props.onUpdateCard}
-                        onDeleteCard={this.props.onDeleteCard}
-                    />
-                <div id="reserved right filler" className="col-2 bg-light"/>
+            <div
+                className="row flex-fill d-flex justify-content-center"
+            >
+                <FlashCard
+                    card={this.props.cards[this.state.currentCardIndex]}
+                    onPrev={this.prevCard}
+                    onNext={this.nextCard}
+                    onUpdateCard={this.props.onUpdateCard}
+                    onDeleteCard={this.props.onDeleteCard}
+                />
             </div>
         );
     }

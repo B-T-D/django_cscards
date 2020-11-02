@@ -59,7 +59,7 @@ export class RightWrongButtons extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="col-12">
                 <button
                     className="btn btn-outline-dark bg-secondary text-white col-6"
                     onClick={this.handleClickGotWrong}

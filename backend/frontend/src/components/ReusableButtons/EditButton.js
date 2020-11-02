@@ -15,20 +15,16 @@ export class EditButton extends React.Component {
     }
 
         return(
-            <td>
-                <button
-                    className={"btn btn-outline-dark"}
-                    onClick={this.props.onClick}
-                >
-                    {this.props.expanded ?
-                        "Cancel"
-                        :
-                        <EditSvg />
-                    }
-                </button>
-
-
-            </td>
+            <button
+                className="btn btn-outline-dark"
+                onClick={this.props.onClick}
+            >
+                {this.props.expanded ?
+                    "Cancel"
+                    :
+                    <EditSvg />
+                }
+            </button>
         );
     }
 }

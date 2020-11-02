@@ -173,14 +173,17 @@ export class CardsList extends React.Component {
             >
                 <TotalCards numCards={this.state.cardsList.length} />
                 <br />
-                <SortUI
-                    onReverseCards={this.onReverseCards}
-                    onSortCardsLastModified={this.onSortCardsLastModified}
-                    onSortCardsDateAdded={this.onSortCardsDateAdded}
-                    onSortCardsTimesWrong={this.onSortCardsTimesWrong}
-                />
+
                 <table>
                     <tbody>
+                        <tr>
+                            <SortUI
+                                onReverseCards={this.onReverseCards}
+                                onSortCardsLastModified={this.onSortCardsLastModified}
+                                onSortCardsDateAdded={this.onSortCardsDateAdded}
+                                onSortCardsTimesWrong={this.onSortCardsTimesWrong}
+                            />
+                        </tr>
                         {this.state.cardsList.map(card => (
                             <CardRow
                                 key={card.id}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FlashCardButtons } from './FlashCardButtons';
 import { Front } from './Front';
 import { Back } from './Back';
+import { RightWrongButtons } from './RightWrongButtons';
 
 export class FlashCard extends React.Component {
 
@@ -63,8 +64,10 @@ export class FlashCard extends React.Component {
 
     render() {
         return(
-            <div className="col bg-light h-200 border border-danger">
+            <div className="col-10 bg-light border border-danger">
+
                 {this.state.flipped ?
+
                     <Back
                         card={this.props.card}
                         onIncrementRight={this.incrementRight}
@@ -74,9 +77,22 @@ export class FlashCard extends React.Component {
 
                     />
                     :
+                    <div className="row border border-success">
                     <Front
                         content={this.props.card.front}
                     />
+                    </div>
+
+                }
+                {this.state.flipped ?
+                    <div className="row">
+                         <RightWrongButtons
+                            onIncrementRight={this.props.onIncrementRight}
+                            onIncrementWrong={this.props.onIncrementWrong}
+                        />
+                    </div>
+                    :
+                    null
                 }
                 <FlashCardButtons
                     onPrev={this.props.onPrev}

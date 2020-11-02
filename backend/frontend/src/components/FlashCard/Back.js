@@ -40,21 +40,21 @@ export class Back extends React.Component {
         }
 
         return (
-            <div className="container-fluid">
-                <CardDetailFormModal
-                    location="review"
-                    mode="update"
-                    onSubmit={this.props.onUpdateCard}
-                    onDeleteCard={this.props.onDeleteCard}
-                    card={this.props.card}
-                />
-                <div className="row">
-                    <p className="col-12">{this.props.card.back}</p>
+            <div className="row border border-warning align-items-end">
+                <div className="col">
+                    <div className="row">
+                        <CardDetailFormModal
+                            location="review"
+                            mode="update"
+                            onSubmit={this.props.onUpdateCard}
+                            onDeleteCard={this.props.onDeleteCard}
+                            card={this.props.card}
+                        />
+                    </div>
+                    <div className="row">
+                        <p className="col-12">{this.props.card.back}</p>
+                    </div>
                 </div>
-                <RightWrongButtons
-                    onIncrementRight={this.props.onIncrementRight}
-                    onIncrementWrong={this.props.onIncrementWrong}
-                />
             </div>
         );
     }

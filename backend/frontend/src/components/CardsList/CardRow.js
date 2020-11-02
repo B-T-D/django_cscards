@@ -50,8 +50,9 @@ export class CardRow extends React.Component {
                     className="row border"
                 >
                     <td
-                        className="col-1 border"
+                        className="col-1 align-self-center"
                     >
+                        <div className="row justify-content-center">
                         <CardDetailFormModal
                             location="manage"
                             mode="update"
@@ -59,9 +60,10 @@ export class CardRow extends React.Component {
                             onDeleteCard={this.props.onDeleteCard}
                             card={this.props.card}
                         />
+                        </div>
                     </td>
                     <td
-                        className="col"
+                        className="col border-left"
                     >
                     <h3 className="row">
                         {this.props.card.front}

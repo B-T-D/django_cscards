@@ -160,14 +160,13 @@ export class CardDetailFormModal extends React.Component {
 
         return(
             <div>
-                <OpenerButton />
+                <OpenerButton/>
                 <Modal
                     show={this.state.show}
                     onHide={this.handleClose}
                     backdrop="static"
                     keyboard={false}
                 >
-
 
                     <form onSubmit={this.handleSubmit}>
 
