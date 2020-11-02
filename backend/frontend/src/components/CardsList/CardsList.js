@@ -170,11 +170,14 @@ export class CardsList extends React.Component {
         return(
             <div
                 className="col-12"
+
+
             >
                 <TotalCards numCards={this.state.cardsList.length} />
                 <br />
 
-                <table>
+                <table
+                >
                     <tbody>
                         <tr>
                             <SortUI

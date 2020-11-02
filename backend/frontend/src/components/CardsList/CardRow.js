@@ -65,11 +65,11 @@ export class CardRow extends React.Component {
                     <td
                         className="col border-left"
                     >
-                    <h3 className="row">
-                        {this.props.card.front}
-                    </h3>
-                    <p className="row">
-                        {this.props.card.back}
+                        <h3 className="row">
+                            {this.props.card.front}
+                        </h3>
+                        <p className="row">
+                            {this.props.card.back}
                     </p>
                     </td>
                 </tr>)

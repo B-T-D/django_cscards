@@ -15,7 +15,8 @@ export class Manage extends React.Component {
         return (
             <div
                 className="row align-content-center text-light"
-                style={{"padding":"5px"}}
+
+                style={{"position": "relative", "left": "0", "max-width": "1700px", "padding": "5px"}}
             >
                 <div className="col align-self-start">
                     <CardDetailFormModal
