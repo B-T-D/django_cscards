@@ -105,7 +105,6 @@ export class CardDetailFormModal extends React.Component {
                 updated it. Wouldn't work if there ever actually was more than
                 one user and cards were shared between users. */
         }
-        alert(`submit object is ${JSON.stringify(submitObject)}`);
         if (this.props.card) {
             this.props.onSubmit(submitObject, this.props.card.id) // The update API caller method takes the pk as a second arg
         } else {
