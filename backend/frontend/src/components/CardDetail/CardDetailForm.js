@@ -142,7 +142,7 @@ export class CardDetailFormModal extends React.Component {
             if (this.mode === 'create') {
                 return(
                     <button
-                        className={"btn btn-outline-dark"}
+                        className={"btn btn-outline-light"}
                         onClick={this.handleShow}
                     >
                         +
