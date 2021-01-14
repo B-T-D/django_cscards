@@ -1,4 +1,3 @@
-[![Travis CI](https://travis-ci.com/B-T-D/django_cscards.svg?branch=master)](https://travis-ci.com/B-T-D/django_cscards)
 
 
 # django_cscards
