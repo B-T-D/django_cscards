@@ -4,7 +4,7 @@ import { CardsList } from '../CardsList/CardsList';
 import { AddCard } from '../AddCard/AddCard';
 import { CardDetailFormModal } from '../CardDetail/CardDetailForm'
 
-/* TODO careful about "prop drilling". Not a super huge app but still might be
+/* TODO careful about prop drilling. Not a super huge app but still might be
     more maintainable to use context some places instead of many-layered
     prop-pass chains. */
 
