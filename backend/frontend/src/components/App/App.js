@@ -298,7 +298,7 @@ class App extends Component {
                                 onDeleteCard={this.deleteCard}
                              />
                         :
-                        <p className="col">Log in to access cards database [replace with login modal]</p>
+                        <p className="col" style={{color:'white'}}>Log in to access cards database</p>
                     }
 
                 </div>
